@@ -1,0 +1,34 @@
+开发手册
+************第一天链接git**************
+git使用手册：
+// git仓库同步 步骤  
+// 一  git add . 提交本地代码进入缓存区 
+// 二  git commit -m 'project init' 缓存区提交到本地仓库进行项目初始化
+// 三  git push  将本机仓库代码推送至线上hub库中
+
+//git分支合并
+//一 切换分支 git checkout master
+//二 合并 git merge origin/(要合并的项目)xxxx
+//三 推送刷新 git push
+
+
+// git 分支创建
+// 一 云平台创建分支
+// 二 git pull
+// 三 git checkout 新分支名称
+// 四 git status查看现在对接分支 git branch查看所有分支
+
+
+链接GitHub线上仓库同步方式
+
+方法一：
+      在线上创建一个仓库，创建成功后复制clone地址,在开发目录下输入 git clone [复制的地址]
+      将使用vue create 的项目除了gitnone全部复制到该目录下，运行手册中git仓库同步，输入用户名密码远程仓库的同步
+
+方法二：
+      在线上创建一个仓库，且这个项目必须是空项目，所有可选的配置文件都选none，根据仓库提示命令，进行线上和线下本地仓库的链接，后续如上进行同步仓库
+
+
+      
+      
+  
