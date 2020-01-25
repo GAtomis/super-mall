@@ -28,7 +28,44 @@ git使用手册：
 方法二：
       在线上创建一个仓库，且这个项目必须是空项目，所有可选的配置文件都选none，根据仓库提示命令，进行线上和线下本地仓库的链接，后续如上进行同步仓库
 
+****************************************************************
+第二课：划分目录结构
+src下开发目录的划分
+assets —— 放一些本地css和img
+common —— 放一些公共js代码
+components —— 公共组件
+|
+  -common ——  类似可以通用的组件
+  |
+  -content —— 只有在这个项目可以用的组件
+network ——  一些网络请求的封装
+router  ——  前端路由的划分
+store —— vuex的一些数据封账
+views ——  一些page的页面以及对应的父子组件放在这里
 
-      
+第三课 样式初始化
+项目的CSS初始化很重要，这里推荐GitHub大神写的css reset样式
+使用base.css 引入组件中使用
+
+第四课 vue.config和editorconfig
+对应的cli3导入路径别名的配置
+module.exports = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        'assets': '@/assets',
+        'network': '@/network',
+        'common': '@/common',
+        'components': '@/components',
+        'views': '@/views'
+
+      }
+    }
+  }
+}
+
+第三节课划分tabbar
+  首先我们项目开发的时候首先可以将我们的导航做好
+  
       
   
