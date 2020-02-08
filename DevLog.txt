@@ -18,6 +18,10 @@ git使用手册：
 // 三 git checkout 新分支名称
 // 四 git status查看现在对接分支 git branch查看所有分支
 
+github 远程创建分支
+git branch 查看当前分支
+git branch -r 查看远程分支
+git branch -a 查看所有分支
 
 链接GitHub线上仓库同步方式
 
@@ -66,6 +70,9 @@ module.exports = {
 
 第三节课划分tabbar
   首先我们项目开发的时候首先可以将我们的导航做好
-  
+  具体可以参考之前做的tabbar的开发
+
+第四节课 nav的开发  在git上创建分支 nav-start
+
       
   
