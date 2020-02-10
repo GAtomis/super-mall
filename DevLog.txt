@@ -73,6 +73,13 @@ module.exports = {
   具体可以参考之前做的tabbar的开发
 
 第四节课 nav的开发  在git上创建分支 nav-start
+  操作创建了公共组件navBar components/common/navBar.vue
+  在home界面进行组件加载，运行环境调试
+  完成后同步仓库 分支名nav-start
+
+第五节课 
+
+
 
       
   
