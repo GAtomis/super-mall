@@ -18,13 +18,30 @@
     </div>
 </template>
 <script>
+import { getHomeData } from 'network/Home.js'
 import narBar from 'components/common/navbar/navBar'
 export default {
   name: 'Home',
+  data() {
+    return {
+      result: null,
+      recommend: [],
+      banner: []
+    }
+  },
   components: {
     narBar
+  },
+  created() {
+    getHomeData().then(res => {
+      this.result = res.data
+      this.banner = res.data.banner
+      this.recommend = res.data.recommend
+      console.log(this.result)
+    })
   }
 }
+//组件被创建的周期函数
 </script>
 <style scoped>
 </style>

@@ -47,8 +47,8 @@ export function request2(config) {
 
   })
   instance.interceptors.response.use(res => {
-    console.log("拦截响应成功", res);
-    return res
+    // console.log("拦截响应成功", res);  
+    return res.data
 
   }, err => {
     console.log("拦截响应失败", err);
