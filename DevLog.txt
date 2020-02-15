@@ -78,8 +78,11 @@ module.exports = {
   完成后同步仓库 分支名nav-start
 
 第五节课 
+网络后台数据连接
+这里是用了我们提前准备好的public-tools  ./network的路径下单axiosmain.js组件。
+各个组件功能介绍：
+  axiosmain------作为一个核心组件axios框架引用的功能封装，例如拦截器和baseUrl和响应时
+  间的设置，最后导出接口供组件或者面向其他对象使用
+  home(面对页面名字).js-------
 
-
-
-      
-  
+通过对应view页面
