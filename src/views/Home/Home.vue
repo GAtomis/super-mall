@@ -23,7 +23,10 @@
             <swiper>
                     <van-swipe-item v-for="(item, index) in banner" :key="index">
                       <a :href="item.link"><img  class="slide-img" :src="item.image" /></a>
-                    </van-swipe-item></swiper>
+                    </van-swipe-item>
+            </swiper>
+            <recommend-view :recommend="recommend"/>
+
         
     </div>
 </template>
@@ -31,6 +34,7 @@
 import { getHomeData } from 'network/Home.js'
 import narBar from 'components/common/navbar/navBar'
 import swiper from 'components/common/vant-swiper/swiper'
+import RecommendView from './childComps/RecommendView'
 
 export default {
   name: 'Home',
@@ -43,7 +47,8 @@ export default {
   },
   components: {
     narBar,
-    swiper
+    swiper,
+    RecommendView
   },
   created() {
     getHomeData().then(res => {
