@@ -93,6 +93,7 @@ module.exports = {
   view组件只需要导入组件就可以代替替代插槽里内容就可以了
 填坑须知-----
   vant推荐轮播的懒加载功能会导致 指示器显示数量不正确从而不显示。
+  UPDATE：更新了图片防抖动技术 在view/home中vsi-box中加入css图片防止抖动技术
 
 第六节课 推送信息组件搭建
   建立一个推送组件，详情请看home组件下子组件RecommendView

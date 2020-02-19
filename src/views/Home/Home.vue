@@ -22,7 +22,9 @@
               
             <swiper>
                     <van-swipe-item v-for="(item, index) in banner" :key="index">
+                      <div class="vsi-box">
                       <a :href="item.link"><img  class="slide-img" :src="item.image" /></a>
+                      </div>
                     </van-swipe-item>
             </swiper>
             <recommend-view :recommend="recommend"/>
@@ -64,5 +66,12 @@ export default {
 <style scoped>
 .slide-img {
   width: 100%;
+}
+.vsi-box {
+  width: 100%;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 52%;
+  position: relative;
 }
 </style>
