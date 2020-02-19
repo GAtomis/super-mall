@@ -68,6 +68,7 @@ export default {
   width: 100%;
 }
 .vsi-box {
+  /* 防止抖动模式 */
   width: 100%;
   overflow: hidden;
   height: 0;
