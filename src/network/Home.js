@@ -1,4 +1,4 @@
-import { request2 } from './axiosMain.js'
+import { request2, request } from './axiosMain.js'
 
 export function getHomeData() {
   //配置封装网络请求的配置参数
@@ -6,4 +6,12 @@ export function getHomeData() {
     url: '/home/multidata'
   }
   return request2(config)
+}
+export function getRankList() {
+  const config = {
+    url: "/mock/ajax.json",
+  }
+
+  return request(config)
+
 }

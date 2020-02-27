@@ -28,15 +28,17 @@
                     </van-swipe-item>
             </swiper>
             <recommend-view :recommend="recommend"/>
+            <rank-in-week :rankList="rankList"/>
 
         
     </div>
 </template>
 <script>
-import { getHomeData } from 'network/Home.js'
+import { getHomeData, getRankList } from 'network/Home.js'
 import narBar from 'components/common/navbar/navBar'
 import swiper from 'components/common/vant-swiper/swiper'
 import RecommendView from './childComps/RecommendView'
+import RankInWeek from './childComps/RankInWeek'
 
 export default {
   name: 'Home',
@@ -44,22 +46,32 @@ export default {
     return {
       result: null,
       recommend: [],
-      banner: []
+      banner: [],
+      rankList: []
     }
   },
   components: {
     narBar,
     swiper,
-    RecommendView
+    RecommendView,
+    RankInWeek
   },
   created() {
+    //Home数据一加载
     getHomeData().then(res => {
       this.result = res.data
       this.banner = res.data.banner.list
       this.recommend = res.data.recommend.list
-      console.log(this.result)
+      // console.log(this.result)
+      // console.log(res)
+    })
+    getRankList().then(res => {
+      console.log(res)
+
+      this.rankList = res.data.rank.list
     })
   }
+  //数据而rankLIst请求加载
 }
 //组件被创建的周期函数
 </script>

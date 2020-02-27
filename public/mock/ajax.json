@@ -1,0 +1,33 @@
+{
+  "ret": true,
+  "title": "rank虚拟数据",
+  "rank": {
+    "list": [
+      {
+        "image": "https://s10.mogucdn.com/mlcdn/c45406/181031_20c98cekk381c5i3ladb506e8g290_172x172.png",
+        "link": "https://list.mogu.com/book/clothing/50240?acm=3.mce.1_10_1nkjk.128038.0.mbQKvrR3BaWml.pos_0-m_549828-sd_119&ptp=31.v5mL0b.0.0.m7PtDmmA",
+        "title": "上衣"
+      },
+      {
+        "image": "https://s10.mogucdn.com/mlcdn/c45406/181203_63cg95db7ifbg8e0aj2bfai3ga325_172x172.png",
+        "link": "https://list.mogu.com/book/skirt/50004?acm=3.mce.1_10_1nkjy.128038.0.mbQKvrR3BaWmm.pos_1-m_549835-sd_119&ptp=31.v5mL0b.0.0.m7PtDmmA",
+        "title": "裙子"
+      },
+      {
+        "image": "https://s10.mogucdn.com/mlcdn/c45406/200115_4c4k39h204fe7ci213a39gi01hd0a_200x200.png",
+        "link": "https://list.mogu.com/book/boyfriend/20003470?acm=3.mce.1_10_1nkk2.128038.0.e7UFfrR3DXHrV.pos_7-m_549837-sd_119&ptp=31.v5mL0b.0.0.7zGKmgmy",
+        "title": "男鞋"
+      },
+      {
+        "image": "https://s10.mogucdn.com/mlcdn/c45406/190509_722gj5bfh264i38bgja715b239hfa_224x224.png",
+        "link": "https://list.mogu.com/book/trousers/50020?acm=3.mce.1_10_1nkjm.128038.0.e7UFfrR3DXHrQ.pos_2-m_549829-sd_119&ptp=31.v5mL0b.0.0.7zGKmgmy",
+        "title": "裤子"
+      },
+      {
+        "image": "https://s10.mogucdn.com/mlcdn/c45406/181031_56ldahcgfcb306ieceh0f36edga0k_172x172.png",
+        "link": "https://list.mogu.com/book/neiyi/50025?acm=3.mce.1_10_1nkjo.128038.0.e7UFfrR3DXHrW.pos_8-m_549830-sd_119&ptp=31.v5mL0b.0.0.7zGKmgmy",
+        "title": "女性内衣"
+      }
+    ]
+  }
+}
