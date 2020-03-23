@@ -1,19 +1,21 @@
 <template>
     <div>
-        
-            
-            <nar-bar>
-                <template v-slot:left>  
-                    前窗口
+        <div id="home">
+            <div class="nav-box">
+            <nar-bar class="home-nav">
+                <template v-slot:right>
+     
                 </template>
                 <template v-slot:center>
-                    中标题
+                    潮流天地
                 </template>
-                <template v-slot:right>
-                    后窗口
+                <template v-slot:left>
+
                 </template>
 
+
             </nar-bar>
+            </div>
             
 
 
@@ -29,16 +31,21 @@
             </swiper>
             <recommend-view :recommend="recommend"/>
             <rank-in-week :rankList="rankList"/>
+            <home-tag-tab :titleList="tagTabList" :homeGoods="homeGoods"/>
+            <!-- <home-tabbar :title='["流行","新款","精选"]'/> -->
 
-        
+        </div>
     </div>
 </template>
 <script>
-import { getHomeData, getRankList } from 'network/Home.js'
+import { getHomeData, getRankList, getGoods } from 'network/Home.js'
 import narBar from 'components/common/navbar/navBar'
 import swiper from 'components/common/vant-swiper/swiper'
 import RecommendView from './childComps/RecommendView'
 import RankInWeek from './childComps/RankInWeek'
+
+// import HomeTabbar from 'components/content/HomeTabbar/HomeTabbar'
+import HomeTagTab from './childComps/HomeTabTag'
 
 export default {
   name: 'Home',
@@ -47,29 +54,64 @@ export default {
       result: null,
       recommend: [],
       banner: [],
-      rankList: []
+      rankList: [],
+      tagTabList: ['新款', '猜你喜欢', '推荐'],
+      homeGoods: {
+        news: { page: 0, list: [] },
+        pop: { page: 0, list: [] },
+        sell: { page: 0, list: [] }
+      }
     }
   },
   components: {
     narBar,
     swiper,
     RecommendView,
-    RankInWeek
+    RankInWeek,
+    // HomeTabbar
+    HomeTagTab
   },
   created() {
-    //Home数据一加载
-    getHomeData().then(res => {
-      this.result = res.data
-      this.banner = res.data.banner.list
-      this.recommend = res.data.recommend.list
-      // console.log(this.result)
-      // console.log(res)
-    })
-    getRankList().then(res => {
-      console.log(res)
+    /*Home数据一加载*/
+    //主页数据包括轮播一周
+    this.getHomeData()
+    //请求商品分类部分的接口数据
+    this.getRankList()
+    this.getGoods('news')
+  },
+  methods: {
+    //请求方法商品信息统一封装
+    getGoods(type) {
+      const page = this.homeGoods[type].page + 1
 
-      this.rankList = res.data.rank.list
-    })
+      getGoods(type, page)
+        .then(res => {
+          this.homeGoods[type].list.push(...res.data.list)
+          this.homeGoods[type].page += 1
+        })
+        .catch(error => {
+          console.log('告警', error)
+        })
+    },
+    //请求商品分类部分统一方法
+    getRankList() {
+      //请求商品分类部分的接口数据
+      getRankList().then(res => {
+        console.log('商品分类部分请求成功', res)
+
+        this.rankList = res.data.rank.list
+      })
+    },
+    getHomeData() {
+      //主页数据包括轮播一周
+      getHomeData().then(res => {
+        this.result = res.data
+        this.banner = res.data.banner.list
+        this.recommend = res.data.recommend.list
+        // console.log(this.result)
+        // console.log(res)
+      })
+    }
   }
   //数据而rankLIst请求加载
 }
@@ -86,5 +128,17 @@ export default {
   height: 0;
   padding-bottom: 52%;
   position: relative;
+}
+.home-nav {
+  background-color: var(--color-tint);
+  color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9;
+}
+.nav-box {
+  height: 44px;
 }
 </style>

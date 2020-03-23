@@ -1,0 +1,140 @@
+{
+    "ret": true,
+    "title": "tag虚拟数据",
+    "tab1": {
+        "list": [{
+                "image": "https://s5.mogucdn.com/mlcdn/c45406/190103_14f0703eahhe6617e33ij617k0b0k_1000x1500.jpg_540x720.v1cAC.40.webp",
+                "link": "https://shop.mogu.com/detail/1md5pec?itemId=1md5pec&acm=3.ms.1_1_1md5pec.46.67824-69000.aQXMtrRYIpVZD.ct_3100-sd_117-swt_46-imt_7-c_2_17_556040429_485765683_1_0-t_aQXMtrRYIpVZD-lc_17-pit_2-c1_88933_nil_nil_1_485765683_30_0-dit_158-idx_0-dm1_5001&cparam=MTU4MzA1ODU2N18xZnhoYmF3X2JmMGZmNjk2NDc5MWJkZjAyZjc1MzQyZWJhOGQ3YzNlXzE3XzBfNTU2MDQwNDI5XzRjODlfMF8xXzBfOTU2XzFfMF9ycy04ODkzMy5ydC0xLnd0LTE=&ptp=31.GrPvGb.0.0.gkjnePPf",
+                "title": "潮流短袖中长款",
+                "num": 2300,
+                "sourcePrice": 98,
+                "advert": "限时抢购",
+                "sold": 12300
+            },
+            {
+                "image": "https://s5.mogucdn.com/mlcdn/17f85e/190802_26076g0e46ef81086c4kel1126290_640x960.jpg_540x720.v1cAC.40.webp",
+                "link": "https://shop.mogu.com/detail/1m8jfry?itemId=1m8jfry&acm=3.ms.1_1_1m8jfry.46.67824-69000.aQXMtrRYIpVZD.ct_3100-sd_117-swt_46-imt_7-c_2_17_481613856_2120989_2_0-t_aQXMtrRYIpVZD-lc_17-pit_2-c1_88933_nil_nil_0_2120989_40_0-dit_158-idx_1-dm1_5001&cparam=MTU4MzA1ODU2N18xaWMxZng4XzgxMzUzZTI1OTUwY2U4NWI1MzlkMWRiMDc2ZGIxZDI5XzE3XzFfNDgxNjEzODU2XzRmODdfMjEyMDk4OV8yXzBfNDgxXzFfMF9ycy04ODkzMy5ydC0xLnd0LTE=&ptp=31.GrPvGb.0.0.fNCYyzTR",
+                "title": "潮流长袖推荐",
+                "num": 1800,
+                "sourcePrice": 120,
+                "advert": "",
+                "sold": 980
+            },
+            {
+                "image": "https://s5.mogucdn.com/mlcdn/c45406/190304_7e9lfglh4l607l9cl050c690d5bc7_640x960.jpg_540x720.v1cAC.40.webp",
+                "link": "https://h5.mogu.com/detail-normal/index.html?itemId=1me8mww&acm=3.ms.1_4_1me8mww.46.36613-68998.fJZKxrRYSEE57.sd_117-swt_46-imt_6-c_1_17_483986597_0_0_3-t_fJZKxrRYSEE57-lc_17-pit_1-qid_90128-dit_164-idx_2-dm1_5001&cparam=MTU4MzA2MTAwN18xMWtfZWFhYzBiOTViOTM3YjA3NTM4N2M0NDMxMTc2YmM3NDFfMTdfMF80ODM5ODY1OTdfNGU4ZV8wXzBfMF81NzVfMV8zX2xvYy0w",
+                "title": "春季韩版宽松衬衫",
+                "num": 2300,
+                "sourcePrice": 58,
+                "advert": "秒杀价",
+                "sold": 7968
+            },
+            {
+                "image": "https://s5.mogucdn.com/mlcdn/c45406/190627_26d6fic73h9keliba18hc525a7kh2_640x960.jpg_540x720.v1cAC.40.webp",
+                "link": "https://h5.mogu.com/detail-normal/index.html?itemId=1mipgjs&acm=3.ms.1_4_1mipgjs.46.36613-68998.fJZKxrRYSEE57.sd_117-swt_46-imt_6-t_fJZKxrRYSEE57-lc_17-pit_1-qid_90128-dit_164-idx_3-dm1_5001",
+                "title": "新款白色大码收腰显瘦名媛气质长款蕾丝网纱连衣裙生日礼服长裙女",
+                "num": 2300,
+                "sourcePrice": 99.9,
+                "advert": "",
+                "sold": 3593
+            },
+            {
+                "image": "https://s5.mogucdn.com/mlcdn/776a41/200228_09ddhk5bhg021eada445jlei253lh_750x1125.jpg_540x720.v1cAC.40.webp",
+                "link": "https://h5.mogu.com/detail-normal/index.html?itemId=1mjtrwo&acm=3.ms.1_4_1mjtrwo.46.36613-68998.fJZKxrRYSEE57.sd_117-swt_46-imt_6-c_1_17_518005163_0_0_3-t_fJZKxrRYSEE57-lc_17-pit_1-qid_90128-dit_164-idx_4-dm1_5001&cparam=MTU4MzA2MTAwN18xMWtfZWFhYzBiOTViOTM3YjA3NTM4N2M0NDMxMTc2YmM3NDFfMTdfMF81MTgwMDUxNjNfNGNfMF8wXzBfNzc5XzFfM19sb2MtMA==",
+                "title": "时尚套装裙女2019春秋新款女韩版洋气卫衣半身裙休闲两件套潮",
+                "num": 2300,
+                "sourcePrice": 45,
+                "advert": "限时抢购",
+                "sold": 1798
+            }
+        ]
+    },
+    "tab2": {
+        "list": [{
+                "image": "https://s5.mogucdn.com/mlcdn/c45406/190103_14f0703eahhe6617e33ij617k0b0k_1000x1500.jpg_540x720.v1cAC.40.webp",
+                "link": "https://m.mogu.com/wall/relative?pid=8872&iid=1md5pec&acm=3.ms.1_1_1md5pec.46.67824-69000.aQXMtrRYIpVZD.ct_3100-sd_117-swt_46-imt_7-c_2_17_556040429_485765683_1_0-t_aQXMtrRYIpVZD-lc_17-pit_2-c1_88933_nil_nil_1_485765683_30_0-dit_158&itemType=7",
+                "title": "潮流短袖中长款",
+                "num": 2300,
+                "sourcePrice": 98,
+                "advert": "限时抢购",
+                "sold": 12300
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            }
+        ]
+    },
+    "tab3": {
+        "list": [{
+                "image": "https://s5.mogucdn.com/mlcdn/c45406/190103_14f0703eahhe6617e33ij617k0b0k_1000x1500.jpg_540x720.v1cAC.40.webp",
+                "link": "https://m.mogu.com/wall/relative?pid=8872&iid=1md5pec&acm=3.ms.1_1_1md5pec.46.67824-69000.aQXMtrRYIpVZD.ct_3100-sd_117-swt_46-imt_7-c_2_17_556040429_485765683_1_0-t_aQXMtrRYIpVZD-lc_17-pit_2-c1_88933_nil_nil_1_485765683_30_0-dit_158&itemType=7",
+                "title": "潮流短袖中长款",
+                "num": 2300,
+                "sourcePrice": 98,
+                "advert": "限时抢购",
+                "sold": 12300
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            },
+            {
+                "image": "",
+                "link": "",
+                "title": "上衣",
+                "num": 2300,
+                "sourcePrice": 980,
+                "advert": "限时抢购"
+            }
+        ]
+    }
+}

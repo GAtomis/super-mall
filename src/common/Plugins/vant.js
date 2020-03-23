@@ -14,3 +14,16 @@ import { Lazyload } from 'vant';
 
 Vue.use(Lazyload);
 
+
+
+//引入tab组件
+import { Tab, Tabs } from 'vant';
+
+Vue.use(Tab);
+Vue.use(Tabs);
+
+//引入宫格使用
+import { Grid, GridItem } from 'vant';
+
+Vue.use(Grid);
+Vue.use(GridItem);
