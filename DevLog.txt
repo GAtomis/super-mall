@@ -102,6 +102,9 @@ module.exports = {
   完成后同步仓库
 
 第七课  tab组件
+vue获得dom对象的小tips：
+ref绑定一个组件或者元素，通过$refs.refname获得组件对象/元素对象
+
 这里可以使用公共组件vant-ui进行开发
 在公共组件js里加载tab 
 使用这个组件，配合grid宫格一起使用，或可以自己写宫格
@@ -123,3 +126,17 @@ CSS只是点补充
 将需要滚动的部分通过封装第三方better-scroll包裹设定固定高度，这里是通过用定位的方式来设定的它的滚动区域，
 
 总结tab涉及遵循了项目树原则，home/hometab/3个项目对应的分支来进行开发的，所以涉及到传参数比较多。
+
+组件监听函数的小tips:
+
+组件监听和html基本元素监听不一样
+
+第八课 制作返回顶部小按钮，
+每周一坑:由于better-scroll于vant-swiper 出现的滑动触发click冒泡坑，
+由于swiper和better scroll使用了带fastclick的功能 需要在轮播的van-swipe加上相对属性（详情请见vant api）
+传送定位功能实现：
+通过绑定子组件对象进行，获取子组件中better-scroll对象通过api中的scrollTo(0, 0, 1000)进行xy速度的传参并且进行定位
+
+用定位将案件定位完毕并显示提前，随后从Scroll中自定义事件子传父组件将监听滚动的定位置p传出，父组件接受后进行传值判断大小给出案件是否显示
+
+点击进行了优化fastclick组件已加载

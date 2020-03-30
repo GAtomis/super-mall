@@ -1,5 +1,5 @@
 <template>
-    <div>
+    
         <div id="home">
             <!-- <div class="nav-box"> -->
               
@@ -22,22 +22,27 @@
 
                   
                 
-            <scroll class="content">
+            <scroll class="content" ref="scroll" :probeType="3" @ByScroll="contentScroll">
                 <home-swiper :banner="banner"/>
                 <recommend-view :recommend="recommend"/>
                 <rank-in-week :rankList="rankList"/>
-                <home-tag-tab :titleList="tagTabList" :homeGoods="homeGoods"/>
+                <home-tag-tab :titleList="tagTabList" :homeGoods="homeGoods" ref="HTT"/>
                 <!-- <home-tabbar :title='["流行","新款","精选"]'/> 备用选项卡-->
             </scroll>  
-
+            <!-- click.native  组件点击事件原生化才能冒泡出事件 -->
+            <back-top @click.native="backClick" class="back-top" v-show="isShowBackTop"/>
         </div>        
-    </div>
+    
 </template>
 <script>
+//公共组件部分
 import { getHomeData, getRankList, getGoods } from 'network/Home.js'
 import narBar from 'components/common/navbar/navBar'
 // import HomeTabbar from 'components/content/HomeTabbar/HomeTabbar'
 import scroll from 'components/common/Scroll/Scroll'
+import BackTop from 'components/common/BackTop/BackTop'
+// import swiper from 'components/common/vant-swiper/swiper'
+//子组件部分
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
 import RankInWeek from './childComps/RankInWeek'
@@ -62,7 +67,9 @@ export default {
         news: { page: 0, list: [] },
         pops: { page: 0, list: [] },
         sell: { page: 0, list: [] }
-      }
+      },
+      //判断BackTop组件是否显示
+      isShowBackTop: false
     }
   },
   components: {
@@ -77,8 +84,12 @@ export default {
     //滑动better-scroll组件封装功能
     scroll,
     //轮播图组件封装
-    HomeSwiper
+    HomeSwiper,
+    //按钮回到顶部
+    BackTop
+    // swiper
   },
+  //组件被创建的周期函数
   created() {
     /*Home数据一加载*/
     //主页数据包括轮播一周
@@ -122,10 +133,23 @@ export default {
         // console.log(this.result)
         // console.log(res)
       })
+    },
+    backClick() {
+      //通过组件对象,得到组件需要的对象
+      const scroll = this.$refs.scroll.Bscroll
+      //调用组件定位方法
+      scroll.scrollTo(0, 0, 1000)
+      // scroll.scrollToElement(, 1000, 1, 1)
+
+      // this.$refs.scroll.Bscroll.scrollTO(0.0)
+      // console.log(this.$refs.HTT)
+    },
+    contentScroll(p) {
+      //这里做一个是否显示的判断
+      console.log((this.isShowBackTop = p.y < -800))
     }
   }
 }
-//组件被创建的周期函数
 </script>
 <style scoped>
 /* 主页整体样式 */
@@ -143,19 +167,7 @@ export default {
   bottom: 49px;
   overflow: hidden;
 }
-/* 轮播样式会迁移走 */
-.slide-img {
-  width: 100%;
-}
-/* 轮播样式会迁移走 */
-.vsi-box {
-  /* 防止抖动模式 */
-  width: 100%;
-  overflow: hidden;
-  height: 0;
-  padding-bottom: 52%;
-  position: relative;
-}
+
 /* 标题栏样式 */
 .home-nav {
   background-color: var(--color-tint);
@@ -165,5 +177,14 @@ export default {
   right: 0;
   top: 0;
   z-index: 9;
+}
+/* 返回顶部图标定位样式 */
+.back-top {
+  position: fixed;
+  bottom: 55px;
+  right: 20px;
+
+  background: #fff;
+  border-radius: 10px;
 }
 </style>

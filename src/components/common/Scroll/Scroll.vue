@@ -9,6 +9,14 @@
 <script>
 import BScroll from 'better-scroll'
 export default {
+  props: {
+    probeType: {
+      type: Number,
+      default() {
+        return 0
+      }
+    }
+  },
   name: 'scroll',
   data() {
     return {
@@ -17,8 +25,12 @@ export default {
   },
   mounted() {
     this.Bscroll = new BScroll(this.$refs.wrapper, {
-      probeType: 3,
+      probeType: this.probeType,
       click: true
+    })
+    this.Bscroll.on('scroll', position => {
+      // 判断滑动事件给父组件传值
+      this.$emit('ByScroll', position)
     })
   }
 }
