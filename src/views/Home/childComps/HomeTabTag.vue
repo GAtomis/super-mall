@@ -3,17 +3,19 @@
     <tab-tag>
       <template >
         <!-- 每一页内容 -->
-        <van-tab :title="titleList[0]">
+        <van-tab :title="titleList[0]" class="tab">
           <!-- 页排列内容 -->
           
               
-                <news :firstData="homeGoods.news"/>
+                  <news :newsData="homeGoods.news"/>
+              
+                
               
           
 
         </van-tab>
-        <van-tab :title="titleList[1]"></van-tab>
-        <van-tab :title="titleList[2]"></van-tab>
+        <van-tab :title="titleList[1]" class="tab"><guess-like :guessData="homeGoods.pops"/></van-tab>
+        <van-tab :title="titleList[2]" class="tab"><news :firstData="homeGoods.news"/></van-tab>
 
       </template>
 
@@ -23,6 +25,7 @@
 <script>
 import TabTag from 'components/common/TabTag/TabTag'
 import News from './Tagtab-child-comps/News'
+import GuessLike from './Tagtab-child-comps/GuessLike'
 
 export default {
   props: {
@@ -45,10 +48,14 @@ export default {
   },
   components: {
     TabTag,
-    News
+    News,
+    GuessLike
   },
   name: 'HomeTabTag'
 }
 </script>
 <style scope>
+.tab {
+  padding-top: 10px;
+}
 </style>

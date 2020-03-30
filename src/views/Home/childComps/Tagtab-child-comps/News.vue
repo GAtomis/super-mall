@@ -9,7 +9,7 @@ import newsItem from './NewsItem.vue'
 export default {
   name: 'News',
   props: {
-    firstData: {
+    newsData: {
       type: Object,
       default() {
         return {}
@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      newsArray: this.firstData.list
+      newsArray: this.newsData.list
     }
   },
   components: {
