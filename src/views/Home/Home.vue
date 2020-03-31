@@ -22,11 +22,11 @@
 
                   
                 
-            <scroll class="content" ref="scroll" :probeType="3" @ByScroll="contentScroll">
+            <scroll class="content" ref="scroll" :probeType="3" @ByScroll="contentScroll" :pull-up-load="true" @pullingUp="loadMore">
                 <home-swiper :banner="banner"/>
                 <recommend-view :recommend="recommend"/>
                 <rank-in-week :rankList="rankList"/>
-                <home-tag-tab :titleList="tagTabList" :homeGoods="homeGoods" ref="HTT"/>
+                <home-tag-tab :titleList="tagTabList" :homeGoods="homeGoods" @rendered="firstRefresh" @change="change"/>
                 <!-- <home-tabbar :title='["流行","新款","精选"]'/> 备用选项卡-->
             </scroll>  
             <!-- click.native  组件点击事件原生化才能冒泡出事件 -->
@@ -69,7 +69,13 @@ export default {
         sell: { page: 0, list: [] }
       },
       //判断BackTop组件是否显示
-      isShowBackTop: false
+      isShowBackTop: false,
+      //当前标签判断
+      currentTab: null,
+      //延迟加载的设置
+      isLoading: true,
+      //局部scroll
+      scroll
     }
   },
   components: {
@@ -101,9 +107,13 @@ export default {
     //请求猜你喜欢
     this.getGoods('pops')
   },
+  mounted() {
+    this.scroll = this.$refs.scroll.Bscroll
+  },
   methods: {
     //请求方法商品信息统一封装
     getGoods(type) {
+      // console.log(this.currentTab)
       const page = this.homeGoods[type].page + 1
 
       getGoods(type, page)
@@ -114,6 +124,7 @@ export default {
         .catch(error => {
           console.log('告警', error)
         })
+      this.scroll.refresh()
     },
     //请求商品分类部分统一方法
     getRankList() {
@@ -136,9 +147,9 @@ export default {
     },
     backClick() {
       //通过组件对象,得到组件需要的对象
-      const scroll = this.$refs.scroll.Bscroll
+      this.scroll = this.$refs.scroll.Bscroll
       //调用组件定位方法
-      scroll.scrollTo(0, 0, 1000)
+      this.scroll.scrollTo(0, 0, 1000)
       // scroll.scrollToElement(, 1000, 1, 1)
 
       // this.$refs.scroll.Bscroll.scrollTO(0.0)
@@ -146,7 +157,30 @@ export default {
     },
     contentScroll(p) {
       //这里做一个是否显示的判断
-      console.log((this.isShowBackTop = p.y < -800))
+      this.isShowBackTop = p.y < -800
+    },
+    //首次渲染
+    firstRefresh(name) {
+      this.currentTab = name
+      console.log(this.currentTab)
+      this.scroll.refresh()
+    },
+    //点击触发改变
+    change(name) {
+      this.currentTab = name
+      console.log(this.currentTab)
+    },
+    loadMore() {
+      //通过组件对象,得到组件需要的对象
+
+      if (this.isLoading) {
+        this.isloading = false
+        setTimeout(() => {
+          this.getGoods(this.currentTab)
+
+          this.isloading = true
+        }, 1000)
+      }
     }
   }
 }

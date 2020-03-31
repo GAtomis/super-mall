@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-tabs v-model="active">
+    <van-tabs v-model="active" @change="change">
       <slot></slot>
     
     </van-tabs>
@@ -11,6 +11,11 @@ export default {
   data() {
     return {
       active: 0
+    }
+  },
+  methods: {
+    change(n, t) {
+      console.log(n, t)
     }
   }
 }

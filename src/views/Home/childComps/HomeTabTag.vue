@@ -1,9 +1,12 @@
 <template>
   <div>
-    <tab-tag>
+    <van-tabs v-model="active" @change="change" @rendered="rendered">
+      
+    
+    
       <template >
         <!-- 每一页内容 -->
-        <van-tab :title="titleList[0]" class="tab">
+        <van-tab :title="titleList[0]"  :name="Object.keys(this.homeGoods)[0]" class="tab">
           <!-- 页排列内容 -->
           
               
@@ -14,16 +17,17 @@
           
 
         </van-tab>
-        <van-tab :title="titleList[1]" class="tab"><guess-like :guessData="homeGoods.pops"/></van-tab>
-        <van-tab :title="titleList[2]" class="tab"><news :firstData="homeGoods.news"/></van-tab>
+        <van-tab :title="titleList[1]" 
+        :name="Object.keys(this.homeGoods)[1]"  class="tab"><guess-like :guessData="homeGoods.pops"/></van-tab>
+        <van-tab :title="titleList[2]" 
+        :name="Object.keys(this.homeGoods)[2]" class="tab"><news :firstData="homeGoods.news"/></van-tab>
 
       </template>
 
-    </tab-tag>
+    </van-tabs>
   </div>
 </template>
 <script>
-import TabTag from 'components/common/TabTag/TabTag'
 import News from './Tagtab-child-comps/News'
 import GuessLike from './Tagtab-child-comps/GuessLike'
 
@@ -44,14 +48,25 @@ export default {
   },
 
   data() {
-    return {}
+    return {
+      active: 0
+    }
   },
   components: {
-    TabTag,
     News,
     GuessLike
   },
-  name: 'HomeTabTag'
+  name: 'HomeTabTag',
+  methods: {
+    rendered(name) {
+      console.log(Object.keys(this.homeGoods))
+
+      this.$emit('rendered', name)
+    },
+    change(name) {
+      this.$emit('change', name)
+    }
+  }
 }
 </script>
 <style scope>

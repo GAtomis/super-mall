@@ -15,6 +15,12 @@ export default {
       default() {
         return 0
       }
+    },
+    pullUpLoad: {
+      type: Boolean,
+      default() {
+        return false
+      }
     }
   },
   name: 'scroll',
@@ -26,11 +32,19 @@ export default {
   mounted() {
     this.Bscroll = new BScroll(this.$refs.wrapper, {
       probeType: this.probeType,
-      click: true
+      click: true,
+      //下拉加载是否开启
+      pullUpLoad: this.pullUpLoad
     })
     this.Bscroll.on('scroll', position => {
       // 判断滑动事件给父组件传值
       this.$emit('ByScroll', position)
+    })
+    this.Bscroll.on('pullingUp', () => {
+      //bscroll下拉加载监听函数
+      // console.log('下拉加载中', position)
+      this.$emit('pullingUp')
+      this.Bscroll.finishPullUp()
     })
   }
 }
