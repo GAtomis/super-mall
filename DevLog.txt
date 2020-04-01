@@ -152,3 +152,9 @@ bug修复，
 解决：
     scroll的刷新功能，当触发图片加载完毕时候回调scroll刷新函数
     用到的知识点:通过$bus 事件总线类似vuex的功能进行解决，当每一张宫格图加载完毕时,会触发一次这个方法,到这个全局事件中，然后在home的组件中同时响应这个方法也进行函数的回调，从而进行scroll.refresh()操作
+    bus->总线
+    Vue.prototype.$bus=new Vue()
+    this.$bus.$emit(事件)
+    this.$bus.$on(事件,回调函数)
+
+第十课：

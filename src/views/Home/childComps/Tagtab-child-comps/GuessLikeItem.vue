@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     imageLoad() {
-      this.$bus.$emit('guess')
+      this.$bus.$emit('guessLoad')
     }
   }
 }
