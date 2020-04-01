@@ -96,6 +96,9 @@ export default {
     // swiper
   },
   //组件被创建的周期函数
+  mounted() {
+    this.scroll = this.$refs.scroll.Bscroll
+  },
   created() {
     /*Home数据一加载*/
     //主页数据包括轮播一周
@@ -106,10 +109,16 @@ export default {
     this.getGoods('news')
     //请求猜你喜欢
     this.getGoods('pops')
+    //事件总线监听非父子组件的通信
+    this.$bus.$on('newsLoad', () => {
+      this.scroll.refresh()
+    })
+    //事件总线监听非父子组件的通信
+    this.$bus.$on('guessLoad', () => {
+      this.scroll.refresh()
+    })
   },
-  mounted() {
-    this.scroll = this.$refs.scroll.Bscroll
-  },
+
   methods: {
     //请求方法商品信息统一封装
     getGoods(type) {
@@ -124,7 +133,7 @@ export default {
         .catch(error => {
           console.log('告警', error)
         })
-      this.scroll.refresh()
+      // this.scroll.refresh()
     },
     //请求商品分类部分统一方法
     getRankList() {
@@ -147,7 +156,7 @@ export default {
     },
     backClick() {
       //通过组件对象,得到组件需要的对象
-      this.scroll = this.$refs.scroll.Bscroll
+      // this.scroll = this.$refs.scroll.Bscroll
       //调用组件定位方法
       this.scroll.scrollTo(0, 0, 1000)
       // scroll.scrollToElement(, 1000, 1, 1)

@@ -1,7 +1,7 @@
 <template>
   <div class="guess">
     
-      <img :src="guessData.image" alt="" class="">
+      <img :src="guessData.image" alt="" class="" @load ="imageLoad">
       <div class="guess-info">
         <p>{{guessData.name}}</p>
         <span>{{guessData.advert}}</span>
@@ -19,6 +19,11 @@ export default {
       default() {
         return {}
       }
+    }
+  },
+  methods: {
+    imageLoad() {
+      this.$bus.$emit('guess')
     }
   }
 }

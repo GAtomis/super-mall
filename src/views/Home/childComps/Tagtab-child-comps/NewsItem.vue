@@ -2,7 +2,7 @@
   <div class="goods">
     
       <!-- <a :href="goods.link"> -->
-        <img  :src="goods.image" >
+        <img  :src="goods.image " @load="imageLoad" >
         <div class="goods-info">
           
           <p><span class="advert">{{goods.advert}}</span>{{goods.name}}</p>
@@ -25,7 +25,14 @@ export default {
       }
     }
   },
-  name: 'NewsItem'
+  name: 'NewsItem',
+  methods: {
+    imageLoad() {
+      console.log('aaaaaassssss')
+
+      this.$bus.$emit('newsLoad')
+    }
+  }
 }
 </script>
 <style scope>
