@@ -3,7 +3,7 @@
         <div id="home">
             <!-- <div class="nav-box"> -->
               
-            <nar-bar class="home-nav">
+            <nar-bar class="home-nav" v-show=0>
                 <template v-slot:right>
      
                 </template>
@@ -30,13 +30,15 @@
                 <!-- <home-tabbar :title='["流行","新款","精选"]'/> 备用选项卡-->
             </scroll>  
             <!-- click.native  组件点击事件原生化才能冒泡出事件 -->
-            <back-top @click.native="backClick" class="back-top" v-show="isShowBackTop"/>
+            <back-top @click.native="backClick" class="back-top " v-show="isShowBackTop"/>
         </div>        
     
 </template>
 <script>
 //公共组件部分
 import { getHomeData, getRankList, getGoods } from 'network/Home.js'
+import { debounce } from 'common/utils/utils.js'
+
 import narBar from 'components/common/navbar/navBar'
 // import HomeTabbar from 'components/content/HomeTabbar/HomeTabbar'
 import scroll from 'components/common/Scroll/Scroll'
@@ -72,8 +74,6 @@ export default {
       isShowBackTop: false,
       //当前标签判断
       currentTab: null,
-      //延迟加载的设置
-      isLoading: true,
       //局部scroll
       scroll
     }
@@ -97,7 +97,23 @@ export default {
   },
   //组件被创建的周期函数
   mounted() {
-    this.scroll = this.$refs.scroll.Bscroll
+    this.scroll = this.$refs.scroll
+    // console.log(this.scroll)
+
+    let func = () => {
+      this.$refs.scroll.refresh
+      console.log('图片加载触发')
+    }
+
+    //事件总线监听非父子组件的通信
+    let refresh = debounce(func, 500)
+
+    this.$bus.$on('newsLoad', () => {
+      refresh()
+    })
+    this.$bus.$on('guessLoad', () => {
+      refresh()
+    })
   },
   created() {
     /*Home数据一加载*/
@@ -109,14 +125,6 @@ export default {
     this.getGoods('news')
     //请求猜你喜欢
     this.getGoods('pops')
-    //事件总线监听非父子组件的通信
-    this.$bus.$on('newsLoad', () => {
-      this.scroll.refresh()
-    })
-    //事件总线监听非父子组件的通信
-    this.$bus.$on('guessLoad', () => {
-      this.scroll.refresh()
-    })
   },
 
   methods: {
@@ -129,6 +137,7 @@ export default {
         .then(res => {
           this.homeGoods[type].list.push(...res.data.list)
           this.homeGoods[type].page += 1
+          this.scroll.refresh()
         })
         .catch(error => {
           console.log('告警', error)
@@ -162,7 +171,7 @@ export default {
       // scroll.scrollToElement(, 1000, 1, 1)
 
       // this.$refs.scroll.Bscroll.scrollTO(0.0)
-      // console.log(this.$refs.HTT)
+      console.log('点击插件返回')
     },
     contentScroll(p) {
       //这里做一个是否显示的判断
@@ -171,25 +180,26 @@ export default {
     //首次渲染
     firstRefresh(name) {
       this.currentTab = name
-      console.log(this.currentTab)
+      // console.log(this.currentTab)
       this.scroll.refresh()
     },
     //点击触发改变
     change(name) {
       this.currentTab = name
-      console.log(this.currentTab)
+      // console.log(this.currentTab)
     },
     loadMore() {
       //通过组件对象,得到组件需要的对象
+      console.log('下拉响应中')
 
-      if (this.isLoading) {
-        this.isloading = false
-        setTimeout(() => {
-          this.getGoods(this.currentTab)
+      // // console.log(this.currentTab)
 
-          this.isloading = true
-        }, 1000)
-      }
+      //
+
+      debounce(() => {
+        this.getGoods(this.currentTab)
+        this.scroll.finishPullUp()
+      }, 500)()
     }
   }
 }

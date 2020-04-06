@@ -28,7 +28,7 @@ export default {
   name: 'NewsItem',
   methods: {
     imageLoad() {
-      console.log('aaaaaassssss')
+      // console.log('aaaaaassssss')
 
       this.$bus.$emit('newsLoad')
     }

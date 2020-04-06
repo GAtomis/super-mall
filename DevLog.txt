@@ -157,4 +157,25 @@ bug修复，
     this.$bus.$emit(事件)
     this.$bus.$on(事件,回调函数)
 
-第十课：
+第十课：防抖功能优化
+  通过上节课我们知道解决bscroll滑动问题的方案就是 在图片加载完毕后进行bscroll对象的刷新
+  但是由于后续我们会进行更多的加载，我们不得不进行重复无效加载的优化，这时候原生函数的js防抖功能成为了
+  我们的解决方案：
+  具体实施是:
+function debounce(func, wait) {(需要优化重复执行的函数,合并执行的时间)
+    let timer//给出一个优化执行线程的变量
+    return function() {
+        let context = this // 注意 this 指向
+        let args = arguments // arguments中存着e
+
+        if (timer) clearTimeout(timer)//如果上个timer未执行后,这个线程会被函数给清除
+
+        timer = setTimeout(() => {//延时函数执行通过apply更改this指向
+            func.apply(context, args)
+        }, wait)
+    }
+}
+  总结函数优化效果：当一个请求发送时，我们会将这个线程请求挂起一段时间，如果有新请求在这段挂起时间内
+  这个效果作用better-scroll刷新，下拉加载数据刷新
+
+  增加了Tbas切换布局模式

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <van-tabs v-model="active" @change="change" @rendered="rendered">
+    <van-tabs v-model="active" @change="change" @rendered="rendered" animated swipeable >
       
     
     
-      <template >
+      
         <!-- 每一页内容 -->
         <van-tab :title="titleList[0]"  :name="Object.keys(this.homeGoods)[0]" class="tab">
           <!-- 页排列内容 -->
@@ -22,7 +22,7 @@
         <van-tab :title="titleList[2]" 
         :name="Object.keys(this.homeGoods)[2]" class="tab"><news :firstData="homeGoods.news"/></van-tab>
 
-      </template>
+      
 
     </van-tabs>
   </div>
