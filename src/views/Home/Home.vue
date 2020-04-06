@@ -3,7 +3,7 @@
         <div id="home">
             <!-- <div class="nav-box"> -->
               
-            <nar-bar class="home-nav" v-show=0>
+            <nar-bar class="home-nav" >
                 <template v-slot:right>
      
                 </template>
