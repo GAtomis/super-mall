@@ -183,7 +183,7 @@ export default {
       // console.log(this.currentTab)
       this.scroll.refresh()
     },
-    //点击触发改变
+    //当tabs切换时候改变默认所在tab标签指向
     change(name) {
       this.currentTab = name
       // console.log(this.currentTab)

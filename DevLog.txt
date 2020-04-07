@@ -179,3 +179,5 @@ function debounce(func, wait) {(需要优化重复执行的函数,合并执行�
   这个效果作用better-scroll刷新，下拉加载数据刷新
 
   增加了Tbas切换布局模式
+  
+  重要的技术革新 为了完成吸顶记住本章将采取双向改造,由此master产生两份
