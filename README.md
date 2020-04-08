@@ -27,3 +27,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+### 说明
+集成了vantUI框架所以better-scroll被舍弃，此后更新的版本都是基于bs-to-vant, bs-to-vant为以后更新master
