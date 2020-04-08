@@ -8,6 +8,8 @@ import { Swipe, SwipeItem } from 'vant';
 
 Vue.use(Swipe);
 Vue.use(SwipeItem);
+
+
 //懒加载配合Swiper使用
 
 import { Lazyload } from 'vant';
@@ -27,3 +29,8 @@ import { Grid, GridItem } from 'vant';
 
 Vue.use(Grid);
 Vue.use(GridItem);
+
+//引入List组件 类better-scroll
+import { List } from 'vant';
+
+Vue.use(List);

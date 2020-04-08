@@ -1,43 +1,49 @@
 <template>
-    <div>
-        <div id="home">
-            <!-- <div class="nav-box"> -->
-              
-            <nar-bar class="home-nav">
-                <template v-slot:right>
-     
-                </template>
-                <template v-slot:center>
-                    潮流天地
-                </template>
-                <template v-slot:left>
+  <div>
+    <div id="home">
+      <!-- <div class="nav-box"> -->
 
-                </template>
+      <nar-bar class="home-nav">
+        <template v-slot:right> </template>
+        <template v-slot:center>
+          潮流天地
+        </template>
+        <template v-slot:left> </template>
+      </nar-bar>
 
+      <div class="content">
+        <home-swiper :banner="banner" />
+        <recommend-view :recommend="recommend" />
+        <rank-in-week :rankList="rankList" />
+        <home-tag-tab
+          ref="tabs"
+          :titleList="tagTabList"
+          :homeGoods="homeGoods"
+          @loadMore="loadMore"
+        />
+        <!-- <home-tabbar :title='["流行","新款","精选"]'/> 备用选项卡-->
+      </div>
 
-            </nar-bar>
-            
-            
-
-
-                  
-                
-            <scroll class="content">
-                <home-swiper :banner="banner"/>
-                <recommend-view :recommend="recommend"/>
-                <rank-in-week :rankList="rankList"/>
-                <home-tag-tab :titleList="tagTabList" :homeGoods="homeGoods"/>
-                <!-- <home-tabbar :title='["流行","新款","精选"]'/> 备用选项卡-->
-            </scroll>  
-
-        </div>        
+      <back-top
+        class="back-top"
+        v-show="btnFlag"
+        @click.native="backTop"
+      ></back-top>
     </div>
+  </div>
 </template>
 <script>
+// 公共方法和类
 import { getHomeData, getRankList, getGoods } from 'network/Home.js'
-import narBar from 'components/common/navbar/navBar'
+import { debounce } from 'common/utils/utils.js'
+
 // import HomeTabbar from 'components/content/HomeTabbar/HomeTabbar'
-import scroll from 'components/common/Scroll/Scroll'
+// import scroll from 'components/common/Scroll/Scroll'
+
+// 公共组件
+import BackTop from 'components/common/BackTop/BackTop'
+import narBar from 'components/common/navbar/navBar'
+//子组件
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
 import RankInWeek from './childComps/RankInWeek'
@@ -62,7 +68,14 @@ export default {
         news: { page: 0, list: [] },
         pops: { page: 0, list: [] },
         sell: { page: 0, list: [] }
-      }
+      },
+
+      //currentTab当前正在选择的标签
+      currentTab: null,
+      //tabs组件的虚拟DOM
+      tabs: null,
+      //按钮显示
+      btnFlag: false
     }
   },
   components: {
@@ -75,9 +88,11 @@ export default {
     // HomeTabbar
     HomeTagTab,
     //滑动better-scroll组件封装功能
-    scroll,
+    // scroll,
     //轮播图组件封装
-    HomeSwiper
+    HomeSwiper,
+    //返回顶部按钮
+    BackTop
   },
   created() {
     /*Home数据一加载*/
@@ -90,6 +105,27 @@ export default {
     //请求猜你喜欢
     this.getGoods('pops')
   },
+  mounted() {
+    this.tabs = this.$refs.tabs
+    //监听渲染后的当tabs标签的变化
+    this.$bus.$on('renderd', name => {
+      this.currentTab = name
+    })
+    //监听改变tabs标签的变化
+    this.$bus.$on('change', name => {
+      this.currentTab = name
+      console.log('切换标签')
+
+      this.tabs.loading = false
+      this.tabs.finished = false
+    })
+    //加入自定义事件的滑动的监听
+    window.addEventListener('scroll', this.scrollToTop)
+  },
+  //销毁滑动事件
+  destroyed() {
+    window.removeEventListener('scroll', this.scrollToTop)
+  },
   methods: {
     //请求方法商品信息统一封装
     getGoods(type) {
@@ -101,6 +137,7 @@ export default {
           this.homeGoods[type].page += 1
         })
         .catch(error => {
+          this.tabs.finished = true
           console.log('告警', error)
         })
     },
@@ -122,6 +159,50 @@ export default {
         // console.log(this.result)
         // console.log(res)
       })
+    },
+    //下拉加载的方法响应
+    loadMore() {
+      //获得子组件对象
+
+      let func = () => {
+        this.getGoods(this.currentTab)
+        // this.tabs.loading = true
+
+        setTimeout(() => {
+          this.tabs.loading = false
+        }, 2000)
+      }
+
+      const loading = debounce(func, 2000)
+      loading()
+
+      // console.log(Loading)
+    },
+    // 点击图片回到顶部方法，加计时器是为了过渡顺滑
+    backTop() {
+      const that = this
+      let timer = setInterval(() => {
+        let ispeed = Math.floor(-that.scrollTop / 5)
+        document.documentElement.scrollTop = document.body.scrollTop =
+          that.scrollTop + ispeed
+        if (that.scrollTop === 0) {
+          clearInterval(timer)
+        }
+      }, 16)
+    },
+    // 为了计算距离顶部的高度，当高度大于60显示回顶部图标，小于60则隐藏
+    scrollToTop() {
+      const that = this
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop
+      that.scrollTop = scrollTop
+      if (that.scrollTop > 100) {
+        that.btnFlag = true
+      } else {
+        that.btnFlag = false
+      }
     }
   }
 }
@@ -130,7 +211,7 @@ export default {
 <style scoped>
 /* 主页整体样式 */
 #home {
-  padding: 44px;
+  /* padding-top: 44px; */
   position: relative;
   height: 100vh;
 }
@@ -141,20 +222,16 @@ export default {
   left: 0;
   right: 0;
   bottom: 49px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
-/* 轮播样式会迁移走 */
-.slide-img {
-  width: 100%;
-}
-/* 轮播样式会迁移走 */
-.vsi-box {
-  /* 防止抖动模式 */
-  width: 100%;
-  overflow: hidden;
-  height: 0;
-  padding-bottom: 52%;
-  position: relative;
+/* 返回顶部图标定位样式 */
+.back-top {
+  position: fixed;
+  bottom: 55px;
+  right: 20px;
+  background: #fff;
+  border-radius: 10px;
+  opacity: 0.6; /* 透明度 */
 }
 /* 标题栏样式 */
 .home-nav {
