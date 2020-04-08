@@ -74,8 +74,11 @@ export default {
       currentTab: null,
       //tabs组件的虚拟DOM
       tabs: null,
-      //按钮显示
-      btnFlag: false
+      //按钮显示与否
+      btnFlag: false,
+      //当前高度记录
+      scrollTop: 200,
+      scrollLeft: 0
     }
   },
   components: {
@@ -119,11 +122,17 @@ export default {
       this.tabs.loading = false
       this.tabs.finished = false
     })
+  },
+
+  //keep-alive激活函数
+  activated() {
     //加入自定义事件的滑动的监听
     window.addEventListener('scroll', this.scrollToTop)
+    window.scrollTo(this.scrollLeft, this.scrollTop)
   },
-  //销毁滑动事件
-  destroyed() {
+  //keep-alive退出周期函数
+  deactivated() {
+    //撤销监听滑动函数
     window.removeEventListener('scroll', this.scrollToTop)
   },
   methods: {
