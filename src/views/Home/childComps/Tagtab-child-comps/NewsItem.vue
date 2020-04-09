@@ -1,19 +1,18 @@
 <template>
-  <div class="goods">
-    
-      <!-- <a :href="goods.link"> -->
-        <img  :src="goods.image" >
-        <div class="goods-info">
-          
-          <p><span class="advert">{{goods.advert}}</span>{{goods.name}}</p>
-          
-          <span class="price">￥{{goods.price}}</span>
-          <span class="collect">{{goods.collect}}</span>
+  <div class="goods" @click="clickRoute">
+    <!-- <a :href="goods.link"> -->
+    <img :src="goods.image" />
+    <div class="goods-info">
+      <p>
+        <span class="advert">{{ goods.advert }}</span
+        >{{ goods.name }}
+      </p>
 
-        </div>
-      <!-- </a> -->
-    
-  </div>  
+      <span class="price">￥{{ goods.price }}</span>
+      <span class="collect">{{ goods.collect }}</span>
+    </div>
+    <!-- </a> -->
+  </div>
 </template>
 <script>
 export default {
@@ -25,7 +24,13 @@ export default {
       }
     }
   },
-  name: 'NewsItem'
+  name: 'NewsItem',
+  methods: {
+    clickRoute() {
+      //id动态路由模式
+      this.$router.push('/detail/' + this.goods.id)
+    }
+  }
 }
 </script>
 <style scope>
