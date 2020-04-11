@@ -1,7 +1,7 @@
 <template>
-    <div class="tab-bar">
-        <slot></slot>
-    </div>
+  <div class="tab-bar">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -23,6 +23,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
+  z-index: 14;
 }
 </style>
