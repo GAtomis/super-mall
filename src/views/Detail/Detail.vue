@@ -13,9 +13,9 @@
       v-model="loading"
       :finished="finished"
       finished-text="没有更多了"
-      @load="onLoad"
-      style="marginTop：20px"
+      class="van-list"
     >
+      <detail-swiper :detailSwiper="detailSwiper.image"></detail-swiper>
       <div><h1>所有信息大萨达撒多撒多撒多撒大所大所多撒大所多</h1></div>
       <div><h1>所有信息大萨达撒多撒多撒多撒大所大所多撒大所多</h1></div>
       <div><h1>所有信息大萨达撒多撒多撒多撒大所大所多撒大所多</h1></div>
@@ -87,9 +87,12 @@
   </div>
 </template>
 <script>
+import { getDetail } from 'network/Detail'
+
 import DetailNavBar from './childComps/DetailNavBar'
 import DetailTabs from './childComps/DetailTabs'
 import DetailFooterBar from './childComps/DetailFooterBar'
+import DetailSwiper from './childComps/DetailSwiper'
 export default {
   name: 'Detail',
   data() {
@@ -100,11 +103,23 @@ export default {
       },
       showAbs: false,
       loading: false,
-      finished: false
+      finished: false,
+      detailSwiper: [],
+      goodsInfo: {}
     }
   },
   created() {
     this.id = this.$route.params.id
+    getDetail(this.id)
+      .then(res => {
+        console.log(res)
+        // ES6解构思想 等于data=res.data
+        const { data } = res
+        this.detailSwiper = data.tab1.id1.Swiper
+      })
+      .catch(err => {
+        console.log(err)
+      })
     // console.log('dsa ')
     window.addEventListener('scroll', this.handleScroll)
   },
@@ -115,7 +130,8 @@ export default {
   components: {
     DetailNavBar,
     DetailTabs,
-    DetailFooterBar
+    DetailFooterBar,
+    DetailSwiper
   },
   methods: {
     handleScroll() {

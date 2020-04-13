@@ -1,12 +1,12 @@
-import { request3 } from './axiosMain.js'
-export function getDetailData(id) {
+import { request } from './axiosMain.js'
+export function getDetail(id) {
     //配置封装网络请求的配置参数
     const config = {
-        url: '/home/multidata',
+        url: "/mock/DetailGoods.json",
         params: {
             id
         },
-        method: 'post'
     }
-    return request3(config)
+
+    return request(config)
 }

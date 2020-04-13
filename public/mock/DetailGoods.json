@@ -1,0 +1,22 @@
+{
+    "ret": true,
+    "title": "id虚拟数据",
+    "tab1": {
+        "id1": {
+            "Swiper": {
+                "image": ["https://s5.mogucdn.com/mlcdn/c45406/180825_55161226jealdc07af74c5dd6ad03_640x960.jpg_640x960.v1cAC.70.webp",
+                    "https://s5.mogucdn.com/mlcdn/c45406/180825_46a3342ij7agld9a31ig0f52g5311_640x960.jpg_640x960.v1cAC.70.webp",
+                    "https://s5.mogucdn.com/mlcdn/c45406/180825_00fg5700ddjhfhg0b64aa24ffh0lc_640x960.jpg_640x960.v1cAC.70.webp"
+                ]
+
+            },
+            "goodsInfo": {
+                "info": "info"
+            }
+
+
+
+        }
+    }
+
+}
