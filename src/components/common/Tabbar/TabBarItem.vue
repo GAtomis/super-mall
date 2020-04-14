@@ -1,18 +1,15 @@
 <template>
-
-    <div class="tab-bar-items" @click='itemClick'>
-        <div v-if='isActive'>
-            <slot name='tab-bar-items-activeImg'></slot>
-        </div>
-        <div v-else>
-            <slot name='tab-bar-items-img'></slot>
-        </div>
-        <div :style='activeStyle'>
-            <slot name='tab-bar-items-text'></slot>
-        </div>
-
+  <div class="tab-bar-items" @click="itemClick">
+    <div v-if="isActive">
+      <slot name="tab-bar-items-activeImg"></slot>
     </div>
-
+    <div v-else>
+      <slot name="tab-bar-items-img"></slot>
+    </div>
+    <div :style="activeStyle">
+      <slot name="tab-bar-items-text"></slot>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -49,6 +46,7 @@ export default {
       //
       if (this.$route.path != this.myPath) {
         this.$router.replace(this.myPath)
+        // this.$router.push(this.myPath)
       }
     }
   }

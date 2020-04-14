@@ -128,7 +128,7 @@ export default {
   activated() {
     //加入自定义事件的滑动的监听
     window.addEventListener('scroll', this.scrollToTop)
-    // window.scrollTo(this.scrollLeft, this.scrollTop)
+    window.scrollTo(this.scrollLeft, this.scrollTop)
   },
   //keep-alive退出周期函数
   deactivated() {

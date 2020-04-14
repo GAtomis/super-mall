@@ -37,3 +37,8 @@ import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant'
 Vue.use(GoodsAction)
 Vue.use(GoodsActionButton)
 Vue.use(GoodsActionIcon)
+
+//引入vant图片功能
+import { Image } from 'vant';
+
+Vue.use(Image);

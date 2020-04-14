@@ -10,3 +10,13 @@ export function getDetail(id) {
 
     return request(config)
 }
+export class Goods {
+    constructor(title, price, columns, services) {
+        this.title = title
+        this.newPrice = price.newPrice
+        this.oldPrice = price.oldPrice
+        this.discount = price.discount
+        this.columns = columns
+        this.services = services
+    }
+}

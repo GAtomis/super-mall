@@ -1,8 +1,50 @@
 <template>
-    <div>
-        <h1>About</h1>
-        <button @click="btnClick">检测</button>
-    </div>
+  <div>
+    <h1>About</h1>
+    <button @click="btnClick">检测</button>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+    <div><h1>页面加载</h1></div>
+  </div>
 </template>
 <script>
 export default {
@@ -14,5 +56,4 @@ export default {
   }
 }
 </script>
-<style scoped>
-</style>
+<style scoped></style>

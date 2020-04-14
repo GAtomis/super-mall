@@ -16,6 +16,7 @@
       class="van-list"
     >
       <detail-swiper :detailSwiper="detailSwiper.image"></detail-swiper>
+      <detail-base-info :goodsInfo="goodsInfo"></detail-base-info>
       <div><h1>所有信息大萨达撒多撒多撒多撒大所大所多撒大所多</h1></div>
       <div><h1>所有信息大萨达撒多撒多撒多撒大所大所多撒大所多</h1></div>
       <div><h1>所有信息大萨达撒多撒多撒多撒大所大所多撒大所多</h1></div>
@@ -87,12 +88,13 @@
   </div>
 </template>
 <script>
-import { getDetail } from 'network/Detail'
+import { getDetail, Goods } from 'network/Detail'
 
 import DetailNavBar from './childComps/DetailNavBar'
 import DetailTabs from './childComps/DetailTabs'
 import DetailFooterBar from './childComps/DetailFooterBar'
 import DetailSwiper from './childComps/DetailSwiper'
+import DetailBaseInfo from './childComps/DetailBaseInfo'
 export default {
   name: 'Detail',
   data() {
@@ -110,16 +112,24 @@ export default {
   },
   created() {
     this.id = this.$route.params.id
-    getDetail(this.id)
-      .then(res => {
-        console.log(res)
-        // ES6解构思想 等于data=res.data
-        const { data } = res
-        this.detailSwiper = data.tab1.id1.Swiper
-      })
-      .catch(err => {
-        console.log(err)
-      })
+
+    //假数据判断，真接口时重写方法
+    let num = parseInt(this.id)
+
+    let getNumStatus = num => {
+      if (num % 2 == 0) {
+        this.getDetail(1)
+        // console.log(true)
+      } else {
+        this.getDetail(0)
+        // console.log(false)
+      }
+    }
+    getNumStatus(num)
+
+    //修复router.push跳转的bug，将页面归0
+    window.scrollTo(0, 0)
+
     // console.log('dsa ')
     window.addEventListener('scroll', this.handleScroll)
   },
@@ -131,9 +141,11 @@ export default {
     DetailNavBar,
     DetailTabs,
     DetailFooterBar,
-    DetailSwiper
+    DetailSwiper,
+    DetailBaseInfo
   },
   methods: {
+    //隐藏tab栏判断是否隐藏的方法
     handleScroll() {
       const top =
         window.pageYOffset ||
@@ -150,6 +162,28 @@ export default {
         this.showAbs = false
       }
       // console.log('adc')
+    },
+    //获得数据源方法
+    getDetail(id) {
+      getDetail(id)
+        .then(res => {
+          // console.log(res)
+          // ES6解构思想 等于data=res.data
+          const { data } = res
+          const id1 = id ? data.tab1.id1 : data.tab1.id2
+          // console.log(id1)
+
+          this.detailSwiper = id1.Swiper
+          this.goodsInfo = new Goods(
+            id1.goodsInfo.title,
+            id1.goodsInfo.price,
+            id1.goodsInfo.columns,
+            id1.goodsInfo.services
+          )
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }

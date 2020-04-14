@@ -4,15 +4,45 @@
     "tab1": {
         "id1": {
             "Swiper": {
-                "image": ["https://s5.mogucdn.com/mlcdn/c45406/180825_55161226jealdc07af74c5dd6ad03_640x960.jpg_640x960.v1cAC.70.webp",
-                    "https://s5.mogucdn.com/mlcdn/c45406/180825_46a3342ij7agld9a31ig0f52g5311_640x960.jpg_640x960.v1cAC.70.webp",
-                    "https://s5.mogucdn.com/mlcdn/c45406/180825_00fg5700ddjhfhg0b64aa24ffh0lc_640x960.jpg_640x960.v1cAC.70.webp"
+                "image": ["https://s5.mogucdn.com/mlcdn/c45406/180825_55161226jealdc07af74c5dd6ad03_640x960.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/180825_46a3342ij7agld9a31ig0f52g5311_640x960.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/180825_00fg5700ddjhfhg0b64aa24ffh0lc_640x960.jpg"
                 ]
 
             },
             "goodsInfo": {
-                "info": "info"
+                "title": "春夏新款假两件蕾丝拼接T恤女长袖学生上衣百搭t恤潮宽松打底衫",
+                "price": {
+                    "newPrice": "35",
+                    "oldPrice": "120",
+                    "discount": "主播推荐"
+                },
+                "services": [{ "icon": "@img/detail-Correct.svg", "name": "退补运费" }, { "icon": "@img/detail-Correct.svg", "name": "全国包邮" }, { "icon": "@img/detail-Correct.svg", "name": "七天无理由" }],
+                "columns": ["销量 111", "收藏 2343", "72小时发货"]
             }
+
+
+
+
+        },
+        "id2": {
+            "Swiper": {
+                "image": ["https://s11.mogucdn.com/mlcdn/c45406/170404_1a1777g824djdle6d1aa664fcj4c7_640x960.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/170404_6d94c1i457lg7e58djfgc08d19k31_640x960.jpg"
+                ]
+
+            },
+            "goodsInfo": {
+                "title": "成人长袖韩装潮流",
+                "price": {
+                    "newPrice": "90",
+                    "oldPrice": "139",
+                    "discount": "热销推荐"
+                },
+                "services": [{ "icon": "@img/detail-Correct.svg", "name": "退补运费" }, { "icon": "@img/detail-Correct.svg", "name": "全国包邮" }, { "icon": "@img/detail-Correct.svg", "name": "七天无理由" }],
+                "columns": ["销量 86", "收藏 14", "72小时发货"]
+            }
+
 
 
 

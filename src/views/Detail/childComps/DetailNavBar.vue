@@ -24,9 +24,9 @@ export default {
   },
   methods: {
     backClick() {
-      this.$router.back()
+      // this.$router.back()
       //可以返回更多
-      // this.$router.go(-1)
+      this.$router.go(-1)
     }
   }
 }
