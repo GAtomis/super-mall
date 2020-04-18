@@ -1,13 +1,17 @@
 <template>
   <div>
-      <div class="recommend">
-          <div class="recommend-box" v-for="(item,index) of recommend" :key="index" >
-              <a :href="item.link">
-                <img :src="item.image" alt="" class="recommend-box-img">
-                <div class="recommend-box-title">{{item.title}}</div>
-              </a>
-          </div>
+    <div class="recommend">
+      <div
+        class="recommend-box"
+        v-for="(item, index) of recommend"
+        :key="index"
+      >
+        <a :href="item.link">
+          <img :src="item.image" alt="" class="recommend-box-img" />
+          <div class="recommend-box-title">{{ item.title }}</div>
+        </a>
       </div>
+    </div>
   </div>
 </template>
 <script>
@@ -28,9 +32,9 @@ export default {
   display: flex;
   width: 100%;
   text-align: center;
-  padding: 10px 0 20px;
-  font-size: 12px;
-  border-bottom: 8px solid #eee;
+  padding: 0.5rem 0 1rem;
+  font-size: 0.6rem;
+  border-bottom: 0.4rem solid #eee;
 }
 .recommend-box {
   flex: 1;
@@ -38,9 +42,9 @@ export default {
 
 .recommend-box-img {
   /* min-height: 80px; */
-  height: 70px;
+  height: 3.5rem;
   /* min-width: 80px; */
-  width: 70px;
-  margin-bottom: 5px;
+  width: 3.5rem;
+  margin-bottom: 0.25rem;
 }
 </style>

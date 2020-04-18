@@ -56,15 +56,15 @@ export default {
 .tab-bar-items {
   flex: 1;
   text-align: center;
-  font-size: 10px;
+  font-size: 0.5rem;
   color: #cdcd;
 }
 
 .tab-bar-items img {
-  height: 24px;
-  width: 24px;
+  height: 1.2rem;
+  width: 1.2rem;
   vertical-align: middle;
-  margin-top: 3px;
+  margin-top: 0.15rem;
   /* line-height: 49px;  */
 }
 

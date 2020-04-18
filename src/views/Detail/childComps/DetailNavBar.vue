@@ -33,10 +33,10 @@ export default {
 </script>
 <style scoped>
 .nav-img {
-  width: 50px;
-  height: 44px;
+  width: 2.5rem;
+  height: 2.2rem;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
 }
 </style>

@@ -20,8 +20,8 @@ export default {
 <style scoped>
 .wrapper {
   display: flex;
-  line-height: 44px;
-  height: 44px;
+  line-height: 2.2rem;
+  height: 2.2rem;
   background: #fff;
   width: 100%;
 }

@@ -39,6 +39,12 @@ Vue.use(GoodsActionButton)
 Vue.use(GoodsActionIcon)
 
 //引入vant图片功能
-import { Image } from 'vant';
+import { Image } from 'vant'
 
-Vue.use(Image);
+Vue.use(Image)
+
+//引入  步进器由增加按钮、减少按钮和输入框组成，用于在一定范围内输入、调整数字
+
+import { Sku } from 'vant'
+
+Vue.use(Sku)

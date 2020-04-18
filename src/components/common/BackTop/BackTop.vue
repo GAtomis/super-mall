@@ -14,7 +14,7 @@ export default {
 </script>
 <style scope>
 .BackTop img {
-  width: 46px;
-  height: 46px;
+  width: 2.3rem;
+  height: 2.3rem;
 }
 </style>

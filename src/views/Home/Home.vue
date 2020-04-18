@@ -227,19 +227,19 @@ export default {
 /* scroll可滑动部分样式 */
 .content {
   position: absolute;
-  top: 44px;
+  top: 2.2rem;
   left: 0;
   right: 0;
-  bottom: 49px;
+  bottom: 2.45rem;
   /* overflow: hidden; */
 }
 /* 返回顶部图标定位样式 */
 .back-top {
   position: fixed;
-  bottom: 55px;
-  right: 20px;
+  bottom: 2.75rem;
+  right: 1rem;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   opacity: 0.6; /* 透明度 */
 }
 /* 标题栏样式 */

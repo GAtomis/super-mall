@@ -35,7 +35,7 @@ export default {
 </script>
 <style scope>
 .goods {
-  padding-bottom: 45px;
+  padding-bottom: 2.25rem;
   position: relative;
 }
 .goods img {
@@ -44,9 +44,9 @@ export default {
 }
 
 .goods-info {
-  font-size: 12px;
+  font-size: 0.6rem;
   position: absolute;
-  bottom: 5px;
+  bottom: 0.25rem;
   left: 0;
   right: 0;
   overflow: hidden;
@@ -57,12 +57,12 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 3px;
+  margin-bottom: 0.15rem;
 }
 
 .goods-info .price {
   color: var(--color-high-text);
-  margin-right: 20px;
+  margin-right: 1rem;
 }
 
 .goods-info .collect {
@@ -72,18 +72,18 @@ export default {
 .goods-info .collect::before {
   content: '';
   position: absolute;
-  left: -15px;
+  left: -0.75rem;
   top: 0;
-  width: 14px;
-  height: 14px;
-  background: url('~assets/img/collect.svg') 0 0/14px 14px;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: url('~assets/img/collect.svg') 0 0/0.7rem 0.7rem;
 }
 .advert {
   display: inline-block;
   background: coral;
   color: #ffffff;
-  margin-right: 5px;
-  padding: 3px 3px;
+  margin-right: 0.25rem;
+  padding: 0.15rem 0.15rem;
   /* border-radius: 5%; */
 }
 </style>

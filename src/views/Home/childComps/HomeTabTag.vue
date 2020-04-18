@@ -1,45 +1,54 @@
 <template>
   <div>
-    <tab-tag offsetTop="44" :isSticky="true" >
-      <template >
+    <tab-tag offsetTop="44" :isSticky="true">
+      <template>
         <!-- 每一页tab内容 -->
-        <van-tab :title="titleList[0]" :name="Object.keys(this.homeGoods)[0]" class="tab">
+        <van-tab
+          :title="titleList[0]"
+          :name="Object.keys(this.homeGoods)[0]"
+          class="tab"
+        >
           <!-- 页排列内容 -->
-          
-            <van-list
-              v-model="loading"
-              :finished="finished"
-              finished-text="没有更多了"
-              @load="onLoad"
-              :immediate-check="false"
-            >
-              <news :newsData="homeGoods.news"/>
-            </van-list>
-                  
-              
-                
-              
-          
 
-        </van-tab>
-        <van-tab :title="titleList[1]" :name="Object.keys(this.homeGoods)[1]" class="tab">
           <van-list
-              v-model="loading"
-              :finished="finished"
-              finished-text="没有更多了"
-              @load="onLoad"
-              :immediate-check="false"
-            ><guess-like :guessData="homeGoods.pops"/></van-list></van-tab>
-        <van-tab :title="titleList[2]" :name="Object.keys(this.homeGoods)[2]" class="tab">
-          <van-list
-              v-model="loading"
-              :finished="finished"
-              finished-text="没有更多了"
-              :immediate-check="false"><div style="height:200px;text-align:center;"><h1>此页面不做展示</h1></div></van-list>
+            v-model="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="onLoad"
+            :immediate-check="false"
+          >
+            <news :newsData="homeGoods.news" />
+          </van-list>
         </van-tab>
-
+        <van-tab
+          :title="titleList[1]"
+          :name="Object.keys(this.homeGoods)[1]"
+          class="tab"
+        >
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="onLoad"
+            :immediate-check="false"
+            ><guess-like :guessData="homeGoods.pops"/></van-list
+        ></van-tab>
+        <van-tab
+          :title="titleList[2]"
+          :name="Object.keys(this.homeGoods)[2]"
+          class="tab"
+        >
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            :immediate-check="false"
+            ><div style="height:200px;text-align:center;">
+              <h1>此页面不做展示</h1>
+            </div></van-list
+          >
+        </van-tab>
       </template>
-
     </tab-tag>
   </div>
 </template>
@@ -103,6 +112,6 @@ export default {
 </script>
 <style scope>
 .tab {
-  padding-top: 10px;
+  padding-top: 0.5rem;
 }
 </style>
