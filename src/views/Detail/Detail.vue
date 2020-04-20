@@ -154,7 +154,7 @@ export default {
           }
         ],
         price: '0', // 默认价格（单位元）
-        stock_num: 600, // 商品总库存
+        stock_num: 999, // 商品总库存
         collection_id: 2261, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
         none_sku: false // 是否无规格商品
       }
@@ -279,6 +279,7 @@ export default {
         },${skuValue.selectedSku.s2 ? skuValue.selectedSku.s2 : ''},${
           skuValue.selectedSku.s3 ? skuValue.selectedSku.s3 : ''
         }`
+        console.log(this.$refs.sku)
       } else {
         this.goodsize = '请选择规格'
       }

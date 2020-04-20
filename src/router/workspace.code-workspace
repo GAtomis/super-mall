@@ -1,22 +1,25 @@
 {
-    "folders": [
-		{
-			"path": "D:\\BaiduNetdiskDownload\\html\\super-mall"
-		},
-		{
-			"path": "D:\\BaiduNetdiskDownload\\html\\vue_shop-master"
-		},
-		{
-			"path": "C:\\Users\\zhou152\\Desktop\\intro-weapp"
-		},
-		{
-			"path": "D:\\Workspace\\wx-demo"
-		},
-		{
-			"path": "D:\\BaiduNetdiskDownload\\html\\MukeWeb-VueJs-EXP\\Travel"
-		}
-	],
-    "settings": {
-        "editor.formatOnSave": true
+  "folders": [
+    {
+      "path": "D:\\BaiduNetdiskDownload\\html\\super-mall"
+    },
+    {
+      "path": "D:\\BaiduNetdiskDownload\\html\\vue_shop-master"
+    },
+    {
+      "path": "C:\\Users\\zhou152\\Desktop\\intro-weapp"
+    },
+    {
+      "path": "D:\\Workspace\\wx-demo"
+    },
+    {
+      "path": "D:\\BaiduNetdiskDownload\\html\\MukeWeb-VueJs-EXP\\Travel"
+    },
+    {
+      "path": "D:\\BaiduNetdiskDownload\\html\\MukeWeb-VueJs-EXP"
     }
+  ],
+  "settings": {
+    "editor.formatOnSave": true
+  }
 }
