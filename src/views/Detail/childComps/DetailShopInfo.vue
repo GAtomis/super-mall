@@ -1,5 +1,5 @@
 <template>
-  <div class="showInfo" v-if="this.shop">
+  <div class="showInfo" v-if="this.shop != null">
     <div class="shop-top">
       <img :src="shop.logo" alt="" />
       <div class="top-info">
@@ -44,7 +44,7 @@ export default {
   },
   data() {
     return {
-      shopInfo: this.shop.info
+      // shopInfo: this.shop.info
     }
   },
   mounted() {
