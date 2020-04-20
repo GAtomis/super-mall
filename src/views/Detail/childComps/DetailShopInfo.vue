@@ -1,41 +1,54 @@
 <template>
-  <div class="showInfo">
+  <div class="showInfo" v-if="this.shop">
     <div class="shop-top">
       <img :src="shop.logo" alt="" />
-      <div class="shop-title">
-        <span>{{ shop.name || '徐10小屋' }}</span>
+      <div class="top-info">
+        <p class="shop-title">
+          {{ shop.name || '徐10小屋' }}
+        </p>
+        <div class="value-wrap">
+          <ul
+            class="value-content"
+            v-for="(item, index) of shop.info.topInfo"
+            :key="index"
+          >
+            <li class="content-key">
+              {{ item.k }}
+            </li>
+            <li class="content-value">{{ item.v }}</li>
+          </ul>
+        </div>
+        <div></div>
       </div>
     </div>
     <div class="shop-bottom">
-      <div class="shop-bottom-middle">
-        <div class="shop-middle-left">
-          <div class="info-sells">
-            <div class="sells-count">
-              {{ shop.sells || '170.0万' }}
-            </div>
-            <div class="sells-text"><p>总销量</p></div>
-          </div>
-        </div>
-
-        <div class="shop-bottom-right">
-          <div><span></span> <span></span></div>
-        </div>
-      </div>
+      <ul class="score">
+        <li v-for="(item, index) of shop.info.bottomInfo" :key="index">
+          <span>{{ item.k }}</span
+          >：<span>{{ item.v }}</span>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: 'DetailShopInfo',
-  data() {
-    return {
-      shop: {
-        name: 'shop-title',
-        info: [{ sells: '170.0万' }, { goodsCount: 86 }, { collect: '54.0万' }],
-        logo:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587106206213&di=2d3341979d01750c31c54bca0408f69c&imgtype=0&src=http%3A%2F%2Fwww.wzsky.net%2Fimg2015%2Fuploadimg%2F20151224%2F0944460.jpg'
+  props: {
+    shop: {
+      type: Object,
+      default() {
+        return {}
       }
     }
+  },
+  data() {
+    return {
+      shopInfo: this.shop.info
+    }
+  },
+  mounted() {
+    console.log(this.shop)
   }
 }
 </script>
@@ -43,35 +56,64 @@ export default {
 .showInfo {
   display: flex;
   flex-direction: column;
+  padding: 0 0.5rem;
   width: 100%;
+
   .shop-top {
     width: 100%;
     height: 5rem;
-    position: relative;
-
+    display: flex;
     img {
-      width: 7rem;
+      width: 33%;
       height: 100%;
     }
-    .shop-title {
-      position: absolute;
-      top: 1rem;
-      left: 7.5rem;
-      font-size: 2rem;
-      text-align: center;
+    .top-info {
+      width: 67%;
+      // display: flex;
+      .shop-title {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      .value-wrap {
+        display: flex;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+        .value-content {
+          flex: 1;
+
+          .content-key {
+            font-size: 0.8rem;
+            margin: 0.5rem 0;
+          }
+          .content-value {
+            font-size: 0.6rem;
+            margin: 0.5rem 0;
+          }
+        }
+      }
     }
   }
   .shop-bottom {
+    padding: 0.5rem 0;
     display: flex;
-    .shop-bottom-middle {
+    width: 100%;
+    border-bottom: 0.4rem solid #eee;
+    .score {
+      display: -webkit-box;
       display: flex;
-      .shop-middle-left {
+      text-align: center;
+      color: #999;
+      font-size: 0.6rem;
+      margin: 0.6rem 0 0.5rem;
+      width: 100%;
+      li {
+        display: block;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
         flex: 1;
       }
     }
-    // .shop-bottom-right {
-
-    // }
   }
 }
 </style>

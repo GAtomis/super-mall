@@ -39,18 +39,19 @@
           <span class="icon-xiangyou iconfont"></span>
         </div>
       </div>
+      <detail-shop-info :shop="shop"></detail-shop-info>
     </van-list>
   </div>
 </template>
 <script>
-import { getDetail, Goods } from 'network/Detail'
+import { getDetail, Goods, shopInfo } from 'network/Detail'
 
 import DetailNavBar from './childComps/DetailNavBar'
 import DetailTabs from './childComps/DetailTabs'
 import DetailFooterBar from './childComps/DetailFooterBar'
 import DetailSwiper from './childComps/DetailSwiper'
 import DetailBaseInfo from './childComps/DetailBaseInfo'
-// import DetailShopInfo from './childComps/DetailShopInfo'
+import DetailShopInfo from './childComps/DetailShopInfo'
 // import DetailDialog from './childComps/DetailDialog'
 export default {
   name: 'Detail',
@@ -179,22 +180,24 @@ export default {
       detailSwiper: [],
       goodsInfo: {},
       show: false, //van-action
-      goodsize: '请选择规格'
+      goodsize: '请选择规格',
+      shop: {}
     }
   },
   created() {
     this.goodsId = this.$route.params.id
 
     //假数据判断，真接口时重写方法
-    let num = parseInt(this.id)
+    let num = Number(this.goodsId)
+    // console.log(num)
 
     let getNumStatus = num => {
       if (num % 2 == 0) {
         this.getDetail(1)
-        // console.log(true)
+        console.log(true)
       } else {
         this.getDetail(0)
-        // console.log(false)
+        console.log(false)
       }
     }
     getNumStatus(num)
@@ -214,8 +217,8 @@ export default {
     DetailTabs,
     DetailFooterBar,
     DetailSwiper,
-    DetailBaseInfo
-    // DetailShopInfo
+    DetailBaseInfo,
+    DetailShopInfo
     // DetailDialog
   },
   methods: {
@@ -254,6 +257,10 @@ export default {
             id1.goodsInfo.columns,
             id1.goodsInfo.services
           )
+
+          // new shopInfo(id1.shopInfo)
+          this.shop = new shopInfo(id1.shopInfo)
+          console.log(this.shop)
         })
         .catch(err => {
           console.log(err)
