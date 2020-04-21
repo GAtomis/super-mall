@@ -181,7 +181,7 @@ export default {
       goodsInfo: {},
       show: false, //van-action
       goodsize: '请选择规格',
-      shop: null
+      shop: {}
     }
   },
   created() {

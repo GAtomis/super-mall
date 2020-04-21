@@ -1,5 +1,5 @@
 <template>
-  <div class="showInfo" v-if="this.shop != null">
+  <div class="showInfo" v-if="Object.keys(this.shop).length !== 0">
     <div class="shop-top">
       <img :src="shop.logo" alt="" />
       <div class="top-info">
