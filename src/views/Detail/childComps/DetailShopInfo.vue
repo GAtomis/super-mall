@@ -15,7 +15,7 @@
             <li class="content-key">
               {{ item.k }}
             </li>
-            <li class="content-value">{{ item.v }}</li>
+            <li class="content-value">{{ item.v | sellCountFilter }}</li>
           </ul>
         </div>
         <div></div>
@@ -42,6 +42,16 @@ export default {
       }
     }
   },
+  //过滤器效果点赞要学习
+  filters: {
+    sellCountFilter(value) {
+      let result = value
+      if (value > 10000) {
+        result = (result / 10000).toFixed(1) + '万'
+      }
+      return result
+    }
+  },
   data() {
     return {
       // shopInfo: this.shop.info
@@ -64,11 +74,12 @@ export default {
     height: 5rem;
     display: flex;
     img {
-      width: 33%;
+      width: 28%;
       height: 100%;
+      background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587448633870&di=786bef0ed3cda2bfc541db1f3adbd7b6&imgtype=0&src=http%3A%2F%2Fwww.17qq.com%2Fimg_qqtouxiang%2F44498011.jpeg);
     }
     .top-info {
-      width: 67%;
+      width: 72%;
       // display: flex;
       .shop-title {
         font-size: 1.5rem;

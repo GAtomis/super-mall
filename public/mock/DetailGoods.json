@@ -28,13 +28,13 @@
             "shopInfo": {
                 "title": "MissLadyShop",
                 "GoodUrl": "www.baidu.com",
-                "cFans": { "title": "人气值", "v": "51792" },
-                "cGood": { "title": "商品数", "v": "85" },
-                "cSell": { "title": "总销量", "v": "110W" },
-                "shopLogURL": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=15028244,3737095857&fm=15&gp=0.jpg",
+                "cFans": { "title": "人气值", "v": 721792 },
+                "cGood": { "title": "商品数", "v": 52 },
+                "cSell": { "title": "总销量", "v": 455552 },
+                "shopLogURL": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2011261702,1514829414&fm=26&gp=0.jpg",
 
                 "bottom_info": [
-                    { "v": "4.9", "k": "宝贝详情" },
+                    { "v": 4.9, "k": "宝贝详情" },
                     { "v": 4, "k": "快递服务" },
                     { "v": 4.5, "k": " 好评率 " }
                 ]
@@ -63,15 +63,15 @@
             },
 
             "shopInfo": {
-                "title": "徐10蒙塔纳小屋",
+                "title": "蒙塔纳小屋",
                 "GoodUrl": "www.baidu.com",
-                "cFans": { "title": "人气值", "v": "51792" },
-                "cGood": { "title": "商品数", "v": "85" },
-                "cSell": { "title": "总销量", "v": "110W" },
-                "shopLogURL": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=15028244,3737095857&fm=15&gp=0.jpg",
+                "cFans": { "title": "人气值", "v": 51792 },
+                "cGood": { "title": "商品数", "v": 85 },
+                "cSell": { "title": "总销量", "v": 1233300 },
+                "shopLogURL": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2531128396,3986252017&fm=11&gp=0.jpg",
 
                 "bottom_info": [
-                    { "v": "4.9", "k": "宝贝详情" },
+                    { "v": 4.9, "k": "宝贝详情" },
                     { "v": 4, "k": "快递服务" },
                     { "v": 4.5, "k": " 好评率 " }
                 ]
