@@ -46,7 +46,7 @@ export default {
 .detail_info {
   padding: 0 0.5rem;
   .title {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     margin: 0.5rem 0;
   }
   // .m-b-t-20 {
