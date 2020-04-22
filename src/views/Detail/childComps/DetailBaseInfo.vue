@@ -20,7 +20,9 @@
         v-for="(item, index) in goodsInfo.services"
         :key="index"
       >
-        <img src="@img/detail-Correct.svg" />
+        <img
+          src="https://s10.mogucdn.com/mlcdn/c45406/180417_25kbfg1c3hdbd120394ji4b11bk2k_36x36.png"
+        />
         <span>{{ item.name }}</span>
       </div>
     </div>
@@ -106,8 +108,8 @@ export default {
       justify-content: center;
       align-items: center;
       img {
-        width: 0.6rem;
-        height: 0.6rem;
+        width: 0.8rem;
+        height: 0.8rem;
       }
       span {
         font-size: 0.75rem;

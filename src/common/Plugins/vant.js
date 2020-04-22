@@ -48,3 +48,8 @@ Vue.use(Image)
 import { Sku } from 'vant'
 
 Vue.use(Sku)
+
+//加载中的显示
+import { Loading } from 'vant';
+
+Vue.use(Loading);

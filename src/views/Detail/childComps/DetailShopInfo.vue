@@ -3,9 +3,12 @@
     <div class="shop-top">
       <img :src="shop.logo" alt="" />
       <div class="top-info">
-        <p class="shop-title">
-          {{ shop.name || '徐10小屋' }}
-        </p>
+        <div class="shop-title">
+          <span>
+            {{ shop.name || '徐10小屋' }}
+          </span>
+        </div>
+
         <div class="value-wrap">
           <ul
             class="value-content"
@@ -76,20 +79,27 @@ export default {
     img {
       width: 28%;
       height: 100%;
+      margin-right: 0.5rem;
       background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587448633870&di=786bef0ed3cda2bfc541db1f3adbd7b6&imgtype=0&src=http%3A%2F%2Fwww.17qq.com%2Fimg_qqtouxiang%2F44498011.jpeg);
     }
     .top-info {
       width: 72%;
       // display: flex;
+
       .shop-title {
-        font-size: 1.5rem;
-        text-align: center;
+        font-size: 1rem;
+        color: #000;
+        font-weight: bold;
+        // text-align: center;
+        // display: inline-block;
+        width: 100%;
+        line-height: 2rem;
       }
       .value-wrap {
         display: flex;
         width: 100%;
         text-align: center;
-        margin-top: 1rem;
+        // margin-top: 1rem;
         .value-content {
           flex: 1;
 

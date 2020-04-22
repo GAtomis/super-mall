@@ -32,14 +32,17 @@
       <detail-swiper :detailSwiper="detailSwiper.image"></detail-swiper>
       <!-- 详情页的基本信息 -->
       <detail-base-info :goodsInfo="goodsInfo"></detail-base-info>
-
+      <!-- 详情页商品规格 -->
       <div @click="isShowClick" style="padding: 0 0.5rem;">
         <div class="moresku">
           <span class="text">{{ this.goodsize }}</span>
           <span class="icon-xiangyou iconfont"></span>
         </div>
       </div>
+      <!-- 详情页店铺信息 -->
       <detail-shop-info :shop="shop"></detail-shop-info>
+      <!-- 详情页图文参数详情 -->
+      <detail-image-info :detList="detList"></detail-image-info>
     </van-list>
   </div>
 </template>
@@ -52,6 +55,8 @@ import DetailFooterBar from './childComps/DetailFooterBar'
 import DetailSwiper from './childComps/DetailSwiper'
 import DetailBaseInfo from './childComps/DetailBaseInfo'
 import DetailShopInfo from './childComps/DetailShopInfo'
+import DetailImageInfo from './childComps/DetailImageInfo'
+
 // import DetailDialog from './childComps/DetailDialog'
 export default {
   name: 'Detail',
@@ -181,7 +186,8 @@ export default {
       goodsInfo: {},
       show: false, //van-action
       goodsize: '请选择规格',
-      shop: {}
+      shop: {},
+      detList: {}
     }
   },
   created() {
@@ -218,7 +224,8 @@ export default {
     DetailFooterBar,
     DetailSwiper,
     DetailBaseInfo,
-    DetailShopInfo
+    DetailShopInfo,
+    DetailImageInfo
     // DetailDialog
   },
   methods: {
@@ -260,7 +267,11 @@ export default {
 
           // new shopInfo(id1.shopInfo)
           this.shop = new shopInfo(id1.shopInfo)
-          console.log(this.shop)
+
+          this.detList = id1.imageInfo
+          console.log(this.detList)
+
+          // console.log(this.shop)
         })
         .catch(err => {
           console.log(err)

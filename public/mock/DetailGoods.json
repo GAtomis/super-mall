@@ -38,20 +38,30 @@
                     { "v": 4, "k": "快递服务" },
                     { "v": 4.5, "k": " 好评率 " }
                 ]
+            },
+            "imageInfo": {
+                "title": "图文参数",
+                "list": ["https://s5.mogucdn.com/mlcdn/c45406/200311_0g9flle320ghi0aifg6if8hbj0dg0_640x4000.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c024f5/190417_2d51ljj2a42lddkg49ibag494g3ca_1125x540.png",
+                    "http://210.22.130.90:17080/img/detail-size1.png"
+
+
+
+                ]
             }
         },
         "id2": {
             "Swiper": {
                 "image": [
-                    "https://s11.mogucdn.com/mlcdn/c45406/170404_1a1777g824djdle6d1aa664fcj4c7_640x960.jpg",
-                    "https://s5.mogucdn.com/mlcdn/c45406/170404_6d94c1i457lg7e58djfgc08d19k31_640x960.jpg"
+                    "https://s5.mogucdn.com/mlcdn/c45406/200306_853j2j2a684cjc0i18deejf3ejc1e_6399x8532.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c45406/200306_04a8kji7dij41b1f483ei8a90ge57_6399x8532.jpg"
                 ]
             },
             "goodsInfo": {
-                "title": "成人长袖韩装潮流",
+                "title": "春秋新款超火韩版长袖印花t恤女宽松百搭假两件上衣网红ins潮",
                 "price": {
-                    "newPrice": "90",
-                    "oldPrice": "139",
+                    "newPrice": 39.90,
+                    "oldPrice": 87.41,
                     "discount": "热销推荐"
                 },
                 "services": [
@@ -74,6 +84,15 @@
                     { "v": 4.9, "k": "宝贝详情" },
                     { "v": 4, "k": "快递服务" },
                     { "v": 4.5, "k": " 好评率 " }
+                ]
+            },
+            "imageInfo": {
+                "title": "图文参数",
+                "list": ["https://s11.mogucdn.com/mlcdn/c45406/191229_05gcbh723l329ddbibcfb9ik71h1a_640x4000.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/191229_8cl5k0k1cbda6f653ib8d49d7e55h_640x2701.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c024f5/190417_2d51ljj2a42lddkg49ibag494g3ca_1125x540.png",
+                    "http://210.22.130.90:17080/img/detail-size1.png"
+
                 ]
             }
         }

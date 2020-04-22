@@ -40,6 +40,7 @@ const routes = [{
         name: 'Layout',
         component: () =>
             import ('views/Layout'),
+
         children: [{
                 path: '/home',
                 name: 'Home',
