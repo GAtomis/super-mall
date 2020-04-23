@@ -1,7 +1,13 @@
 <template>
   <div class="goods" @click="clickRoute">
     <!-- <a :href="goods.link"> -->
-    <img :src="goods.image" />
+    <!-- <img :src="goods.image" /> -->
+    <van-image lazy-load :src="goods.image">
+      <template v-slot:loading>
+        <van-loading type="spinner" size="20" />
+      </template>
+      <template v-slot:error>加载失败</template>
+    </van-image>
     <div class="goods-info">
       <p>
         <span class="advert">{{ goods.advert }}</span

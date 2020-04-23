@@ -49,12 +49,12 @@
 <script>
 import { getDetail, Goods, shopInfo } from 'network/Detail'
 
-import DetailNavBar from './childComps/DetailNavBar'
 import DetailTabs from './childComps/DetailTabs'
-import DetailFooterBar from './childComps/DetailFooterBar'
 import DetailSwiper from './childComps/DetailSwiper'
+import DetailNavBar from './childComps/DetailNavBar'
 import DetailBaseInfo from './childComps/DetailBaseInfo'
 import DetailShopInfo from './childComps/DetailShopInfo'
+import DetailFooterBar from './childComps/DetailFooterBar'
 import DetailImageInfo from './childComps/DetailImageInfo'
 
 // import DetailDialog from './childComps/DetailDialog'
@@ -191,6 +191,7 @@ export default {
     }
   },
   created() {
+    //商品唯一id
     this.goodsId = this.$route.params.id
 
     //假数据判断，真接口时重写方法
@@ -251,13 +252,14 @@ export default {
     getDetail(id) {
       getDetail(id)
         .then(res => {
-          // console.log(res)
           // ES6解构思想 等于data=res.data
           const { data } = res
+          //由于是假后台这里面就做个判断取数据，真后台请重新编写
           const id1 = id ? data.tab1.id1 : data.tab1.id2
-          // console.log(id1)
 
+          //取出Swiper的数据
           this.detailSwiper = id1.Swiper
+          //取出商品信息数据
           this.goodsInfo = new Goods(
             id1.goodsInfo.title,
             id1.goodsInfo.price,
@@ -265,13 +267,10 @@ export default {
             id1.goodsInfo.services
           )
 
-          // new shopInfo(id1.shopInfo)
+          // 取出店铺相关信息数据
           this.shop = new shopInfo(id1.shopInfo)
-
+          // 取出图文参数相关信息
           this.detList = id1.imageInfo
-          console.log(this.detList)
-
-          // console.log(this.shop)
         })
         .catch(err => {
           console.log(err)

@@ -1,6 +1,12 @@
 <template>
   <div class="guess">
-    <img :src="guessData.image" alt="" class="" />
+    <!-- <img :src="guessData.image" alt="" class="" /> -->
+    <van-image lazy-load :src="guessData.image">
+      <template v-slot:loading>
+        <van-loading type="spinner" size="20" />
+      </template>
+      <template v-slot:error>加载失败</template>
+    </van-image>
     <div class="guess-info">
       <p>{{ guessData.name }}</p>
       <span>{{ guessData.advert }}</span>

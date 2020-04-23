@@ -1,5 +1,5 @@
 <template>
-  <div class="img-info">
+  <div class="img-info" v-if="Object.keys(this.detList).length !== 0">
     <!-- 图片参数详情模块开发 -->
     <div>
       <span>{{ detList.title }}</span>
