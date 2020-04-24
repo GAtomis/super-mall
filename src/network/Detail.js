@@ -1,4 +1,4 @@
-import { request } from './axiosMain.js'
+import { request, request3 } from './axiosMain.js'
 export function getDetail(id) {
     //配置封装网络请求的配置参数
     const config = {
@@ -10,6 +10,20 @@ export function getDetail(id) {
 
     return request(config)
 }
+export function getRecommend(type, page) {
+    const config = {
+        url: "/supermall/RankIcon",
+        params: {
+            type,
+            page
+        },
+        method: "post"
+    }
+    return request3(config);
+}
+
+
+
 export class Goods {
     constructor(title, price, columns, services) {
         this.title = title

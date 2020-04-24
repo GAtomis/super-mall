@@ -7,6 +7,7 @@
       v-show="showAbs"
       :style="opacityStyle"
       class="tabs-comp"
+      @tabClick="anchor"
     ></detail-tabs>
     <!-- 底部导航购买导航栏 -->
     <detail-footer-bar class="footer-bar-comp"></detail-footer-bar>
@@ -29,9 +30,9 @@
       class="van-list"
     >
       <!-- 详情页轮播图 -->
-      <detail-swiper :detailSwiper="detailSwiper.image"></detail-swiper>
+      <detail-swiper :detailSwiper="detailSwiper.image" />
       <!-- 详情页的基本信息 -->
-      <detail-base-info :goodsInfo="goodsInfo"></detail-base-info>
+      <detail-base-info :goodsInfo="goodsInfo" />
       <!-- 详情页商品规格 -->
       <div @click="isShowClick" style="padding: 0 0.5rem;">
         <div class="moresku">
@@ -40,17 +41,18 @@
         </div>
       </div>
       <!-- 详情页店铺信息 -->
-      <detail-shop-info :shop="shop"></detail-shop-info>
+      <detail-shop-info :shop="shop" />
       <!-- 详情页图文参数详情 -->
-      <detail-image-info :detList="detList"></detail-image-info>
+      <detail-image-info :detList="detList" class="imgInfo" />
       <!-- 详情页评论详情 -->
-      <detail-comment-info :commentInfo="commentInfo"></detail-comment-info>
+      <detail-comment-info :commentInfo="commentInfo" class="comment" />
+      <good-list :newsData="Recommend" class="goods-recommend" />
     </van-list>
   </div>
 </template>
 <script>
 //网络请求导入函数
-import { getDetail, Goods, shopInfo } from 'network/Detail'
+import { getDetail, getRecommend, Goods, shopInfo } from 'network/Detail'
 //组件区导入
 import DetailTabs from './childComps/DetailTabs'
 import DetailSwiper from './childComps/DetailSwiper'
@@ -60,6 +62,8 @@ import DetailShopInfo from './childComps/DetailShopInfo'
 import DetailFooterBar from './childComps/DetailFooterBar'
 import DetailImageInfo from './childComps/DetailImageInfo'
 import DetailCommentInfo from './childComps/DetailCommentInfo'
+//组件复用区
+import goodList from 'views/Home/childComps/Tagtab-child-comps/News'
 
 // import DetailDialog from './childComps/DetailDialog'
 export default {
@@ -183,6 +187,7 @@ export default {
       opacityStyle: {
         opacity: 0
       },
+      elementList: {},
       showAbs: false, //van-list
       loading: false, //van-list
       finished: false, //van-list
@@ -192,7 +197,8 @@ export default {
       goodsize: '请选择规格',
       shop: {},
       detList: {},
-      commentInfo: {}
+      commentInfo: {},
+      Recommend: {}
     }
   },
   created() {
@@ -213,6 +219,13 @@ export default {
       }
     }
     getNumStatus(num)
+    getRecommend('news', 2)
+      .then(res => {
+        this.Recommend = res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
     //修复router.push跳转的bug，将页面归0
     window.scrollTo(0, 0)
@@ -232,7 +245,8 @@ export default {
     DetailBaseInfo,
     DetailShopInfo,
     DetailImageInfo,
-    DetailCommentInfo
+    DetailCommentInfo,
+    goodList
     // DetailDialog
   },
   methods: {
@@ -242,8 +256,6 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop
-      console.log(top)
-
       if (top >= 44) {
         let opacity = (top - 44) / 44
         opacity = opacity > 1 ? 1 : opacity
@@ -308,7 +320,39 @@ export default {
       } else {
         this.goodsize = '请选择规格'
       }
+    },
+    anchor(key) {
+      console.log(key)
+
+      switch (key) {
+        case 0:
+          window.scrollTo(0, 0)
+
+          break
+        case 1:
+          this.$el.querySelector('.imgInfo').scrollIntoView()
+          window.scrollTo(0, document.documentElement.scrollTop - 95)
+
+          break
+        case 2:
+          this.$el.querySelector('.comment').scrollIntoView()
+          window.scrollTo(0, document.documentElement.scrollTop - 95)
+
+          break
+        case 3:
+          this.$el.querySelector('.goods-recommend').scrollIntoView()
+          window.scrollTo(0, document.documentElement.scrollTop - 95)
+          break
+        default:
+          window.scrollTo(0, 0)
+          break
+      }
+
+      // this.$el.querySelector('.imgInfo').scrollIntoView()
     }
+  },
+  mounted() {
+    console.log(this.$refs.imgInfo)
   }
 }
 </script>

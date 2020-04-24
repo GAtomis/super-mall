@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="wrapper">
-      <div v-for="(item, index) of title" :key="index" class="content">
+      <div
+        v-for="(item, index) of title"
+        :key="index"
+        class="content"
+        @click="tabClick(index)"
+      >
         <span>{{ item }}</span>
       </div>
     </div>
@@ -13,6 +18,11 @@ export default {
   data() {
     return {
       title: ['宝贝', '详情', '评价', '推荐']
+    }
+  },
+  methods: {
+    tabClick(index) {
+      this.$emit('tabClick', index)
     }
   }
 }
