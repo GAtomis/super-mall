@@ -5,9 +5,8 @@
         "id1": {
             "Swiper": {
                 "image": [
-                    "https://s5.mogucdn.com/mlcdn/c45406/180825_55161226jealdc07af74c5dd6ad03_640x960.jpg",
-                    "https://s5.mogucdn.com/mlcdn/c45406/180825_46a3342ij7agld9a31ig0f52g5311_640x960.jpg",
-                    "https://s5.mogucdn.com/mlcdn/c45406/180825_00fg5700ddjhfhg0b64aa24ffh0lc_640x960.jpg"
+                    "https://s11.mogucdn.com/mlcdn/c45406/170404_1a1777g824djdle6d1aa664fcj4c7_640x960.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/170404_6d94c1i457lg7e58djfgc08d19k31_640x960.jpg"
                 ]
             },
             "goodsInfo": {
@@ -41,13 +40,39 @@
             },
             "imageInfo": {
                 "title": "图文参数",
-                "list": ["https://s5.mogucdn.com/mlcdn/c45406/200311_0g9flle320ghi0aifg6if8hbj0dg0_640x4000.jpg",
+                "list": ["https://s11.mogucdn.com/mlcdn/c45406/170404_7f5g71135828gaid0f4fk75a0k10l_750x770.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/170404_6f5j76753lh954idi4jib75ee624j_750x855.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c45406/170404_30igb1bh2cdd7llebh6b4fhbbge0d_750x909.jpg",
+                    "https://s11.mogucdn.com/mlcdn/c45406/170404_51fk17d0cgaj63db39i4ild8fi4ce_750x760.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/170404_5kk1dh6jd0509cj3jf5daja1e81g8_750x795.jpg",
                     "https://s11.mogucdn.com/mlcdn/c024f5/190417_2d51ljj2a42lddkg49ibag494g3ca_1125x540.png",
                     "http://210.22.130.90:17080/img/detail-size1.png"
 
 
 
                 ]
+            },
+            "rate": {
+                "title": "商品评论",
+                "icon": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1669988562,3803278515&fm=26&gp=0.jpg",
+                "username": "一条小团团~",
+                "content": "穿的比较合身，很适合出街！",
+                "sku": [{
+                    "type": "颜色",
+                    "value": "白色"
+                }, {
+                    "type": "尺寸",
+                    "value": "XL"
+                }]
+
+
+
+                ,
+                "img": ["https://s5.mogucdn.com/mlcdn/c45406/191021_69eh61k1ik6a3j8ke3bl72l5fll23_629x1080.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/190609_4jck4429k356c9k5e4235bj40hcjj_1242x1656.jpg",
+                    "https://s5.mogucdn.com/mlcdn/c45406/190609_4jck4429k356c9k5e4235bj40hcjj_1242x1656.jpg"
+                ],
+                "created": 1587642740
             }
         },
         "id2": {
@@ -94,6 +119,23 @@
                     "http://210.22.130.90:17080/img/detail-size1.png"
 
                 ]
+            },
+            "rate": {
+                "title": "商品评论",
+                "icon": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587650873145&di=d2f629d6b25e046c5d9202ecd403390b&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F4afbfbedab64034f29596c8ba6c379310b551da2.jpg",
+                "username": "尤雨溪的vue~",
+                "content": "非常的舒适很棒！",
+                "sku": [{
+                    "type": "颜色",
+                    "value": "白色"
+                }, {
+                    "type": "尺寸",
+                    "value": "XL"
+                }]
+
+                ,
+                "img": ["https://s11.mogucdn.com/mlcdn/c45406/200112_807cb3l9kdjl84015bfa523g5e06j_360x640.jpg"],
+                "created": 1579780340
             }
         }
     }

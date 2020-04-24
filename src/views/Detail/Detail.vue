@@ -43,12 +43,15 @@
       <detail-shop-info :shop="shop"></detail-shop-info>
       <!-- 详情页图文参数详情 -->
       <detail-image-info :detList="detList"></detail-image-info>
+      <!-- 详情页评论详情 -->
+      <detail-comment-info :commentInfo="commentInfo"></detail-comment-info>
     </van-list>
   </div>
 </template>
 <script>
+//网络请求导入函数
 import { getDetail, Goods, shopInfo } from 'network/Detail'
-
+//组件区导入
 import DetailTabs from './childComps/DetailTabs'
 import DetailSwiper from './childComps/DetailSwiper'
 import DetailNavBar from './childComps/DetailNavBar'
@@ -56,6 +59,7 @@ import DetailBaseInfo from './childComps/DetailBaseInfo'
 import DetailShopInfo from './childComps/DetailShopInfo'
 import DetailFooterBar from './childComps/DetailFooterBar'
 import DetailImageInfo from './childComps/DetailImageInfo'
+import DetailCommentInfo from './childComps/DetailCommentInfo'
 
 // import DetailDialog from './childComps/DetailDialog'
 export default {
@@ -187,7 +191,8 @@ export default {
       show: false, //van-action
       goodsize: '请选择规格',
       shop: {},
-      detList: {}
+      detList: {},
+      commentInfo: {}
     }
   },
   created() {
@@ -226,7 +231,8 @@ export default {
     DetailSwiper,
     DetailBaseInfo,
     DetailShopInfo,
-    DetailImageInfo
+    DetailImageInfo,
+    DetailCommentInfo
     // DetailDialog
   },
   methods: {
@@ -246,7 +252,6 @@ export default {
       } else if (top == 0) {
         this.showAbs = false
       }
-      // console.log('adc')
     },
     //获得数据源方法
     getDetail(id) {
@@ -271,6 +276,9 @@ export default {
           this.shop = new shopInfo(id1.shopInfo)
           // 取出图文参数相关信息
           this.detList = id1.imageInfo
+          // 取出评论
+          this.commentInfo = id1.rate
+          console.log(id1.rate)
         })
         .catch(err => {
           console.log(err)
@@ -356,14 +364,5 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-.iconfont {
-  font-family: 'iconfont' !important;
-  font-size: 0.8rem;
-  font-style: normal;
-  color: #666;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 </style>
