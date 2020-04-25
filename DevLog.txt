@@ -229,3 +229,7 @@ goods-id
   2.过滤器的使用filters 为了转换某些数据比如150000——>15.0万中使用
 
   3.一些css样式可以直接对照代码学习不做过多详述
+  同页面做路由跳转时需要在router-view做key值的绑定进行页面刷新
+    <keep-alive exclude="Detail">
+      <router-view :key="$route.fullPath" />
+    </keep-alive>

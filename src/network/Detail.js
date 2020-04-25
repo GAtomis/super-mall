@@ -12,17 +12,15 @@ export function getDetail(id) {
 }
 export function getRecommend(type, page) {
     const config = {
-        url: "/supermall/RankIcon",
+        url: '/supermall/RankIcon',
         params: {
             type,
             page
         },
-        method: "post"
+        method: 'post'
     }
-    return request3(config);
+    return request3(config)
 }
-
-
 
 export class Goods {
     constructor(title, price, columns, services) {

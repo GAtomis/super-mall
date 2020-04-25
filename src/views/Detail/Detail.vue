@@ -51,6 +51,8 @@
   </div>
 </template>
 <script>
+//工具类方法导入
+import { getVirtualData } from 'common/utils/utils'
 //网络请求导入函数
 import { getDetail, getRecommend, Goods, shopInfo } from 'network/Detail'
 //组件区导入
@@ -202,23 +204,16 @@ export default {
     }
   },
   created() {
+    /* 注意如果真实使用该项目需要全部重写network的接受方法以及删除假数据方法，这里的写法不够优雅需要后续抽出到一个组件中进行 */
     //商品唯一id
     this.goodsId = this.$route.params.id
+    const id=getVirtualData(this.goodsId)
 
     //假数据判断，真接口时重写方法
-    let num = Number(this.goodsId)
-    // console.log(num)
 
-    let getNumStatus = num => {
-      if (num % 2 == 0) {
-        this.getDetail(1)
-        console.log(true)
-      } else {
-        this.getDetail(0)
-        console.log(false)
-      }
-    }
-    getNumStatus(num)
+    
+    this.getDetail(id)
+    /*  假接口判断结束 */
     getRecommend('news', 2)
       .then(res => {
         this.Recommend = res.data
@@ -321,9 +316,10 @@ export default {
         this.goodsize = '请选择规格'
       }
     },
+    //锚点定位
     anchor(key) {
       console.log(key)
-
+      //锚点点位方法
       switch (key) {
         case 0:
           window.scrollTo(0, 0)
@@ -350,9 +346,6 @@ export default {
 
       // this.$el.querySelector('.imgInfo').scrollIntoView()
     }
-  },
-  mounted() {
-    console.log(this.$refs.imgInfo)
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div id="App">
     <!-- <main-tabbar /> -->
     <keep-alive exclude="Detail">
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </keep-alive>
   </div>
 </template>
@@ -12,7 +12,12 @@ export default {
   name: 'App',
   components: {
     // MainTabbar
-  }
+  },
+
+  data() {
+    return {}
+  },
+  methods: {}
 }
 </script>
 <style>
