@@ -191,7 +191,7 @@ export default {
     backTop() {
       const that = this
       let timer = setInterval(() => {
-        let ispeed = Math.floor(-that.scrollTop / 5)
+        let ispeed = Math.floor(-that.scrollTop / 10)
         document.documentElement.scrollTop = document.body.scrollTop =
           that.scrollTop + ispeed
         if (that.scrollTop === 0) {

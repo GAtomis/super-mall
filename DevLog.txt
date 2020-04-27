@@ -229,7 +229,60 @@ goods-id
   2.过滤器的使用filters 为了转换某些数据比如150000——>15.0万中使用
 
   3.一些css样式可以直接对照代码学习不做过多详述
-  同页面做路由跳转时需要在router-view做key值的绑定进行页面刷新
+  
+  4.同页面跳转问题，同页面做路由跳转时需要在router-view做key值的绑定进行页面刷新
     <keep-alive exclude="Detail">
       <router-view :key="$route.fullPath" />
     </keep-alive>
+  否则的会造成页面无法刷新
+
+
+ 用到的知识点:通过$bus 事件总线类似vuex的功能进行解决，当每一张宫格图加载完毕时,会触发一次这个方法,到这个全局事件中，然后在home的组件中同时响应这个方法也进行函数的回调，从而进行scroll.refresh()操作
+      bus->总线
+    Vue.prototype.$bus=new Vue()
+    this.$bus.$emit(事件)
+    this.$bus.$on(事件,回调函数)
+
+第十课：功能优化
+    用到的知识点:通过$bus 事件总线类似vuex的功能进行解决，当每一张宫格图加载完毕时,会触发一次这个方法,到这个全局事件中，然后在home的组件中同时响应这个方法也进行函数的回调，从而进行scroll.refresh()操作
+          bus->总线
+    //主函数进行bus原型的注册
+    Vue.prototype.$bus=new Vue()
+    //在某个组件发出事件响应
+    this.$bus.$emit(事件)
+    //在需要响应的组件中收到收到响应并且回调
+    this.$bus.$on(事件,回调函数)
+    //取消对应响应回调函数,必须要是原回调函数
+    this.$bus.$off(事件,回调函数)
+
+
+
+  通过上节课我们知道解决bscroll滑动问题的方案就是 在图片加载完毕后进行bscroll对象的刷新
+  但是由于后续我们会进行更多的加载，我们不得不进行重复无效加载的优化，这时候原生函数的js防抖功能成为了
+  我们的解决方案：
+  具体实施是:
+function debounce(func, wait) {(需要优化重复执行的函数,合并执行的时间)
+    let timer//给出一个优化执行线程的变量
+    return function() {
+        let context = this // 注意 this 指向
+        let args = arguments // arguments中存着e
+
+        if (timer) clearTimeout(timer)//如果上个timer未执行后,这个线程会被函数给清除
+
+        timer = setTimeout(() => {//延时函数执行通过apply更改this指向
+            func.apply(context, args)
+        }, wait)
+    }
+}
+  总结函数优化效果：当一个请求发送时，我们会将这个线程请求挂起一段时间，如果有新请求在这段挂起时间内
+
+  vue知识点补充
+  vue.mixin 补充
+  可以混入任何的的vue任何的属性，作为补充例如 data methods 一些周期函数：mouted() created()
+
+
+  推荐学习futter(Dark) 有空就学习
+
+  
+
+  

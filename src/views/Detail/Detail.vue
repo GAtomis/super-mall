@@ -30,10 +30,10 @@
       class="van-list"
     >
       <!-- 详情页轮播图 -->
-      <detail-swiper :detailSwiper="detailSwiper.image" />
+      <detail-swiper :detailSwiper="detailSwiper.image" class="swiper" />
       <!-- 详情页的基本信息 -->
       <detail-base-info :goodsInfo="goodsInfo" />
-      <!-- 详情页商品规格 -->
+      <!-- 详情页商品规格激活div -->
       <div @click="isShowClick" style="padding: 0 0.5rem;">
         <div class="moresku">
           <span class="text">{{ this.goodsize }}</span>
@@ -52,7 +52,7 @@
 </template>
 <script>
 //工具类方法导入
-import { getVirtualData } from 'common/utils/utils'
+import { getVirtualData, scrollMoving } from 'common/utils/utils'
 //网络请求导入函数
 import { getDetail, getRecommend, Goods, shopInfo } from 'network/Detail'
 //组件区导入
@@ -200,32 +200,25 @@ export default {
       shop: {},
       detList: {},
       commentInfo: {},
-      Recommend: {}
+      Recommend: {},
+      achorObj: ['.swiper', '.imgInfo', '.comment', '.goods-recommend'],
+      timer: null
     }
   },
   created() {
     /* 注意如果真实使用该项目需要全部重写network的接受方法以及删除假数据方法，这里的写法不够优雅需要后续抽出到一个组件中进行 */
     //商品唯一id
     this.goodsId = this.$route.params.id
-    const id=getVirtualData(this.goodsId)
-
     //假数据判断，真接口时重写方法
-
-    
+    const id = getVirtualData(this.goodsId)
     this.getDetail(id)
-    /*  假接口判断结束 */
-    getRecommend('news', 2)
-      .then(res => {
-        this.Recommend = res.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    /*  假接口判断结束,推荐数据接收 */
+    this.getRecommend('news', 2)
 
     //修复router.push跳转的bug，将页面归0
     window.scrollTo(0, 0)
 
-    // console.log('dsa ')
+    // 监控滑动
     window.addEventListener('scroll', this.handleScroll)
   },
   activated() {
@@ -251,6 +244,7 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop
+      // console.log(top)
       if (top >= 44) {
         let opacity = (top - 44) / 44
         opacity = opacity > 1 ? 1 : opacity
@@ -291,6 +285,17 @@ export default {
           console.log(err)
         })
     },
+    //获得推荐数据方法
+    getRecommend(type, page) {
+      getRecommend(type, page)
+        .then(res => {
+          this.Recommend = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+
     //购物车弹窗显示
     isShowClick() {
       this.show = true
@@ -316,35 +321,21 @@ export default {
         this.goodsize = '请选择规格'
       }
     },
+
     //锚点定位
     anchor(key) {
-      console.log(key)
+      // console.log(key)
       //锚点点位方法
-      switch (key) {
-        case 0:
-          window.scrollTo(0, 0)
 
-          break
-        case 1:
-          this.$el.querySelector('.imgInfo').scrollIntoView()
-          window.scrollTo(0, document.documentElement.scrollTop - 95)
+      scrollMoving(
+        this.$el.querySelector(this.achorObj[key]).offsetTop,
+        -50,
+        this
+      )
 
-          break
-        case 2:
-          this.$el.querySelector('.comment').scrollIntoView()
-          window.scrollTo(0, document.documentElement.scrollTop - 95)
+      // console.log(key)
 
-          break
-        case 3:
-          this.$el.querySelector('.goods-recommend').scrollIntoView()
-          window.scrollTo(0, document.documentElement.scrollTop - 95)
-          break
-        default:
-          window.scrollTo(0, 0)
-          break
-      }
-
-      // this.$el.querySelector('.imgInfo').scrollIntoView()
+      // scrollMoving(this.$el.querySelector('.goods-recommend').offsetTop, -50)
     }
   }
 }

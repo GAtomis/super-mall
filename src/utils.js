@@ -59,7 +59,6 @@ export function formatDate(date, fmt) {
     }
     return fmt
 }
-//虚拟数据工具类
 export function getVirtualData(id) {
     let num = Number(id)
     if (num % 2 == 0) {
@@ -68,16 +67,12 @@ export function getVirtualData(id) {
         return 0
     }
 }
-//三个参数 目标元素距离顶部的数值,可选的目标偏移量,目标本地储存的定时器变量this
 export function scrollMoving(key, num = 0, tag) {
-    console.log(key);
 
     const that = tag
     if (that.timer) clearInterval(that.timer)
-    let numb = key == 0 ? 0 : num
         //视口偏移量
-    const value = key + numb
-    console.log(value);
+    const value = key + num;
 
 
 
