@@ -8,6 +8,7 @@
       :style="opacityStyle"
       class="tabs-comp"
       @tabClick="anchor"
+      ref="tab"
     ></detail-tabs>
     <!-- 底部导航购买导航栏 -->
     <detail-footer-bar class="footer-bar-comp"></detail-footer-bar>
@@ -202,13 +203,14 @@ export default {
       goodsInfo: {}, //详情页的基本信息
       show: false, //van-sku控制显示与否
       goodsize: '请选择规格', //默认sku按键的显示
-      shop: {},//详情页店铺数据
-      detList: {},//图文参数数据
-      commentInfo: {},//评论区数据
-      recommend: {},//推荐区数据
+      shop: {}, //详情页店铺数据
+      detList: {}, //图文参数数据
+      commentInfo: {}, //评论区数据
+      recommend: {}, //推荐区数据
       timer: null, //储存的定时器
-      themeTopY: [],//锚点需要的各个主题所在的高度
-      getThemeTopY: null//获得上面主题数组数据的方法
+      themeTopY: [], //锚点需要的各个主题所在的高度
+      getThemeTopY: null, //获得上面主题数组数据的方法
+      current: 0 //选择标签
     }
   },
   created() {
@@ -233,6 +235,7 @@ export default {
       this.themeTopY.push(this.$refs.imgInfo.$el.offsetTop)
       this.themeTopY.push(this.$refs.comment.$el.offsetTop)
       this.themeTopY.push(this.$refs.recommend.$el.offsetTop)
+      this.themeTopY.push(Number.MAX_VALUE)
       console.log(this.themeTopY)
     })
     //goodlist图片加载回调函数
@@ -271,6 +274,16 @@ export default {
         this.showAbs = true
       } else if (top == 0) {
         this.showAbs = false
+      }
+      for (var i = 0; i < this.themeTopY.length - 1; i++) {
+        if (
+          this.current !== i &&
+          top + 50 >= this.themeTopY[i] &&
+          top - 50 <= this.themeTopY[i + 1]
+        ) {
+          this.current = i
+          this.$refs.tab.currentTab = i
+        }
       }
     },
     //获得数据源方法

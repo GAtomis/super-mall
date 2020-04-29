@@ -6,6 +6,7 @@
         :key="index"
         class="content"
         @click="tabClick(index)"
+        :class="{ active: currentTab == index }"
       >
         <span>{{ item }}</span>
       </div>
@@ -15,14 +16,17 @@
 <script>
 export default {
   name: 'DetailTabs',
+
   data() {
     return {
-      title: ['宝贝', '详情', '评价', '推荐']
+      title: ['宝贝', '详情', '评价', '推荐'],
+      currentTab: 0
     }
   },
   methods: {
     tabClick(index) {
       this.$emit('tabClick', index)
+      this.currentTab = index
     }
   }
 }
@@ -38,5 +42,8 @@ export default {
 .content {
   flex: 1;
   text-align: center;
+}
+.active {
+  color: #ef232f;
 }
 </style>
