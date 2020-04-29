@@ -15,7 +15,7 @@ export function debounce(func, wait) {
 }
 // 节流
 //节流throttle代码：
-export function throttle(fn) {
+export function throttle(fn, delay) {
     let canRun = true; // 通过闭包保存一个标记
     return function() {
         // 在函数开头判断标记是否为true，不为true则return
@@ -28,7 +28,7 @@ export function throttle(fn) {
             // 当定时器没有执行的时候标记永远是false，在开头被return掉
             fn.apply(this, arguments);
             canRun = true;
-        }, 1000);
+        }, delay);
     };
 }
 export function formatDate(date, fmt) {
@@ -139,7 +139,7 @@ export function scrollMoving(key, num = 0, tag) {
                 document.documentElement.scrollTop = document.documentElement.scrollTop +
                     ispeed
             }
-        }, 10)
+        }, 16)
     }
 
 

@@ -30,7 +30,7 @@
       class="van-list"
     >
       <!-- 详情页轮播图 -->
-      <detail-swiper :detailSwiper="detailSwiper.image" class="swiper" />
+      <detail-swiper :detailSwiper="detailSwiper.image" />
       <!-- 详情页的基本信息 -->
       <detail-base-info :goodsInfo="goodsInfo" />
       <!-- 详情页商品规格激活div -->
@@ -43,16 +43,21 @@
       <!-- 详情页店铺信息 -->
       <detail-shop-info :shop="shop" />
       <!-- 详情页图文参数详情 -->
-      <detail-image-info :detList="detList" class="imgInfo" />
+      <detail-image-info :detList="detList" ref="imgInfo" />
       <!-- 详情页评论详情 -->
-      <detail-comment-info :commentInfo="commentInfo" class="comment" />
-      <good-list :newsData="Recommend" class="goods-recommend" />
+      <detail-comment-info :commentInfo="commentInfo" ref="comment" />
+      <!-- 推荐商品组件 复用home子组件goodlist -->
+      <good-list
+        :newsData="recommend"
+        class="goods-recommend"
+        ref="recommend"
+      />
     </van-list>
   </div>
 </template>
 <script>
-//工具类方法导入
-import { getVirtualData, scrollMoving } from 'common/utils/utils'
+//工具类方法导入 虚拟数据，模拟滑动锚点，防抖
+import { getVirtualData, scrollMoving, debounce } from 'common/utils/utils'
 //网络请求导入函数
 import { getDetail, getRecommend, Goods, shopInfo } from 'network/Detail'
 //组件区导入
@@ -185,24 +190,25 @@ export default {
   },
   data() {
     return {
-      goodsId: null,
+      goodsId: null, //
       opacityStyle: {
         opacity: 0
       },
       elementList: {},
-      showAbs: false, //van-list
+      showAbs: false, //隐藏锚点Nav栏的属性
       loading: false, //van-list
       finished: false, //van-list
-      detailSwiper: [],
-      goodsInfo: {},
-      show: false, //van-action
-      goodsize: '请选择规格',
-      shop: {},
-      detList: {},
-      commentInfo: {},
-      Recommend: {},
-      achorObj: ['.swiper', '.imgInfo', '.comment', '.goods-recommend'],
-      timer: null
+      detailSwiper: [], //详情页轮播图数据
+      goodsInfo: {}, //详情页的基本信息
+      show: false, //van-sku控制显示与否
+      goodsize: '请选择规格', //默认sku按键的显示
+      shop: {},//详情页店铺数据
+      detList: {},//图文参数数据
+      commentInfo: {},//评论区数据
+      recommend: {},//推荐区数据
+      timer: null, //储存的定时器
+      themeTopY: [],//锚点需要的各个主题所在的高度
+      getThemeTopY: null//获得上面主题数组数据的方法
     }
   },
   created() {
@@ -220,6 +226,19 @@ export default {
 
     // 监控滑动
     window.addEventListener('scroll', this.handleScroll)
+    // 第四个给我的高度计算变量附一个方法
+    this.getThemeTopY = debounce(() => {
+      this.themeTopY = []
+      this.themeTopY.push(0)
+      this.themeTopY.push(this.$refs.imgInfo.$el.offsetTop)
+      this.themeTopY.push(this.$refs.comment.$el.offsetTop)
+      this.themeTopY.push(this.$refs.recommend.$el.offsetTop)
+      console.log(this.themeTopY)
+    })
+    //goodlist图片加载回调函数
+    this.$bus.$on('goodsImgOnload', this.getThemeTopY)
+    //imgInfo图文参数加载回调函数
+    this.$bus.$on('imgInfoOnload', this.getThemeTopY)
   },
   activated() {
     this.id = this.$route.params.id
@@ -279,7 +298,8 @@ export default {
           this.detList = id1.imageInfo
           // 取出评论
           this.commentInfo = id1.rate
-          console.log(id1.rate)
+          // console.log(id1.rate)
+          this.$bus.$on('onload')
         })
         .catch(err => {
           console.log(err)
@@ -289,7 +309,7 @@ export default {
     getRecommend(type, page) {
       getRecommend(type, page)
         .then(res => {
-          this.Recommend = res.data
+          this.recommend = res.data
         })
         .catch(err => {
           console.log(err)
@@ -326,15 +346,8 @@ export default {
     anchor(key) {
       // console.log(key)
       //锚点点位方法
-
-      scrollMoving(
-        this.$el.querySelector(this.achorObj[key]).offsetTop,
-        -50,
-        this
-      )
-
+      scrollMoving(this.themeTopY[key], -50, this)
       // console.log(key)
-
       // scrollMoving(this.$el.querySelector('.goods-recommend').offsetTop, -50)
     }
   }

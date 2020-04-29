@@ -2,7 +2,7 @@
   <div class="goods" @click="clickRoute">
     <!-- <a :href="goods.link"> -->
     <!-- <img :src="goods.image" /> -->
-    <van-image lazy-load :src="goods.image">
+    <van-image lazy-load :src="goods.image" @load="onload">
       <template v-slot:loading>
         <van-loading type="spinner" size="20" />
       </template>
@@ -35,6 +35,9 @@ export default {
     clickRoute() {
       //id动态路由模式
       this.$router.push('/detail/' + this.goods.id)
+    },
+    onload() {
+      this.$bus.$emit('goodsImgOnload')
     }
   }
 }

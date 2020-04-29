@@ -6,7 +6,7 @@
         <span>{{ detList.title }}</span>
       </div>
       <div class="imglist" v-for="(item, index) of detList.list" :key="index">
-        <van-image lazy-load :src="item">
+        <van-image :src="item" @load="onload">
           <template v-slot:loading>
             <van-loading type="spinner" size="20" />
           </template>
@@ -29,6 +29,11 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    onload() {
+      this.$bus.$emit('imgInfoOnload')
+    }
   }
 }
 </script>

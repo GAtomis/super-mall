@@ -283,6 +283,14 @@ function debounce(func, wait) {(需要优化重复执行的函数,合并执行�
 
   推荐学习futter(Dark) 有空就学习
 
+  第14课 标题和内容的联动效果
+  * 在detail中监听标题的点击，获取index
+  * 滚动到对应的主题
+    **获取所有主题的的offsetTop值
+    **在哪里获取正确的offsetTop
+      1.creted里肯定不行组件未加载
+      2.图片加载完毕才是最正确的高度
+
   
 
   
