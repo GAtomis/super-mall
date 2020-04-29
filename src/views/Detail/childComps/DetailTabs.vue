@@ -6,7 +6,7 @@
         :key="index"
         class="content"
         @click="tabClick(index)"
-        :class="{ active: currentTab == index }"
+        :class="{ active: currentIndex == index }"
       >
         <span>{{ item }}</span>
       </div>
@@ -20,13 +20,13 @@ export default {
   data() {
     return {
       title: ['宝贝', '详情', '评价', '推荐'],
-      currentTab: 0
+      currentIndex: 0
     }
   },
   methods: {
     tabClick(index) {
       this.$emit('tabClick', index)
-      this.currentTab = index
+      this.currentIndex = index
     }
   }
 }

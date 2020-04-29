@@ -210,7 +210,7 @@ export default {
       timer: null, //储存的定时器
       themeTopY: [], //锚点需要的各个主题所在的高度
       getThemeTopY: null, //获得上面主题数组数据的方法
-      current: 0 //选择标签
+      currentIndex: 0 //选择标签
     }
   },
   created() {
@@ -277,12 +277,12 @@ export default {
       }
       for (var i = 0; i < this.themeTopY.length - 1; i++) {
         if (
-          this.current !== i &&
+          this.currentIndex !== i &&
           top + 50 >= this.themeTopY[i] &&
           top - 50 <= this.themeTopY[i + 1]
         ) {
-          this.current = i
-          this.$refs.tab.currentTab = i
+          this.currentIndex = i
+          this.$refs.tab.currentIndex = i
         }
       }
     },

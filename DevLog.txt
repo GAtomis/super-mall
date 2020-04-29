@@ -306,7 +306,7 @@ function debounce(func, wait) {(需要优化重复执行的函数,合并执行�
       Vue.nextTick(function () {
         // DOM 更新了
       })
-
+    标签移动之前已经讲过，当前实现方法是由空间换区时间的方式进行判断并且赋值
   
 
   
