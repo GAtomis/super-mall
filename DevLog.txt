@@ -306,7 +306,32 @@ function debounce(func, wait) {(需要优化重复执行的函数,合并执行�
       Vue.nextTick(function () {
         // DOM 更新了
       })
+    得到主题距离顶部的实际高度最佳方案是，图片加载事件完毕后进行调用
+
+    //goodlist图片加载回调函数
+    this.$bus.$on('goodsImgOnload', this.getThemeTopY)
+    //imgInfo图文参数加载回调函数
+    this.$bus.$on('imgInfoOnload', this.getThemeTopY)
+
     标签移动之前已经讲过，当前实现方法是由空间换区时间的方式进行判断并且赋值
+    经过区域的计算得到固定高度，进行区域判断 在最后的区域给出一个max的最大值
+    进行区域判断
+      for (var i = 0; i < this.themeTopY.length - 1; i++) {
+        if (
+          this.currentIndex !== i &&
+          top + 50 >= this.themeTopY[i] &&
+          top - 50 <= this.themeTopY[i + 1]
+        ) {
+          this.currentIndex = i
+          this.$refs.tab.currentIndex = i
+        }
+      }
+    
+    
+
   
+
+
+
 
   
