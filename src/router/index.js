@@ -54,10 +54,10 @@ const routes = [{
                     import ('views/Category/Category')
             },
             {
-                path: '/about',
-                name: 'About',
+                path: '/cart',
+                name: 'Cart',
                 component: () =>
-                    import ('views/About/About')
+                    import ('views/Cart/Cart')
             },
             {
                 path: '/own',

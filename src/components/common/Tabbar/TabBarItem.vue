@@ -57,7 +57,7 @@ export default {
   flex: 1;
   text-align: center;
   font-size: 0.5rem;
-  color: #cdcd;
+  color: #707070;
 }
 
 .tab-bar-items img {
@@ -69,6 +69,6 @@ export default {
 }
 
 .active {
-  color: #d81e06;
+  color: #f50765;
 }
 </style>
