@@ -147,6 +147,13 @@ export default {
     user-select: none;
   }
 
+  .cart-view {
+    position: absolute;
+    top: 0;
+    bottom: 4.9rem;
+    width: 100%;
+    // overflow-y: auto;
+  }
   .nav-comp {
     background-color: #ffffff;
     // color: #000;
@@ -157,33 +164,6 @@ export default {
     top: 0;
     z-index: 9;
   }
-  /*   .cart-view {
-    position: absolute;
-    top: 0;
-    bottom: 4.9rem;
-    width: 100%;
-    overflow-y: auto;
-
-    .cart-wrapper {
-      margin: 0.6rem 0.6rem 0 0.6rem;
-      .cart-tabs {
-        .goods-box {
-          margin-bottom: 1rem;
-        }
-      }
-    }
-
-    .nav-comp {
-      background-color: #ffffff;
-      // color: #000;
-      width: 100%;
-      position: fixed;
-      left: 0;
-      // right: 0;
-      top: 0;
-      z-index: 9;
-    }
-  } */
 }
 
 .delete-button {
