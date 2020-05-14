@@ -11,7 +11,11 @@
       ref="tab"
     ></detail-tabs>
     <!-- 底部导航购买导航栏 -->
-    <detail-footer-bar class="footer-bar-comp"></detail-footer-bar>
+    <detail-footer-bar
+      class="footer-bar-comp"
+      @cartClick="isShowClick"
+      :cartLength="length"
+    ></detail-footer-bar>
     <!-- 商品规格弹出窗口 -->
     <van-sku
       v-model="show"
@@ -59,6 +63,8 @@
 <script>
 //工具类方法导入 虚拟数据，模拟滑动锚点，防抖
 import { getVirtualData, scrollMoving, debounce } from 'common/utils/utils'
+import { Toast } from 'vant'
+import { ADD_CART, CART_LIST, CART_LENGTH } from 'store/mutations_type.js'
 //网络请求导入函数
 import { getDetail, getRecommend, Goods, shopInfo } from 'network/Detail'
 //组件区导入
@@ -72,6 +78,9 @@ import DetailImageInfo from './childComps/DetailImageInfo'
 import DetailCommentInfo from './childComps/DetailCommentInfo'
 //组件复用区
 import goodList from 'views/Home/childComps/Tagtab-child-comps/News'
+
+// 引入Vuex
+import { mapGetters } from 'vuex'
 
 // import DetailDialog from './childComps/DetailDialog'
 export default {
@@ -187,7 +196,8 @@ export default {
         picture:
           'https://s11.mogucdn.com/mlcdn/c45406/170404_1a1777g824djdle6d1aa664fcj4c7_640x960.jpg'
       }
-    }
+    },
+    ...mapGetters({ length: CART_LENGTH, cartList: CART_LIST })
   },
   data() {
     return {
@@ -215,8 +225,7 @@ export default {
   },
   created() {
     /* 注意如果真实使用该项目需要全部重写network的接受方法以及删除假数据方法，这里的写法不够优雅需要后续抽出到一个组件中进行 */
-    //商品唯一id
-    this.goodsId = this.$route.params.id
+
     //假数据判断，真接口时重写方法
     const id = getVirtualData(this.goodsId)
     this.getDetail(id)
@@ -246,6 +255,14 @@ export default {
   activated() {
     this.id = this.$route.params.id
     window.addEventListener('scroll', this.handleScroll)
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.goodsId = this.$route.params.id
+    })
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   components: {
     DetailNavBar,
@@ -335,10 +352,24 @@ export default {
     },
     //购物车加入
     onAddCartClicked(goodsData) {
-      console.log(goodsData)
+      goodsData.shopName = this.shop.name
+      goodsData.title = this.goodsInfo.title
+
+      let newsData = goodsData
+      this.$store.dispatch(ADD_CART, newsData)
+      console.log(this.$store.state.cartList)
+
+      Toast({
+        message: '加入成功',
+        icon: 'cart-o'
+      })
+      console.log(newsData)
+
+      console.log(this.$store.state)
     },
     //立即购买加入
     onBuyClicked(goodsData) {
+      this.$router.push({ name: 'Cart' })
       console.log(goodsData)
     },
     //切换商品类型的回调函数
@@ -349,7 +380,6 @@ export default {
         },${skuValue.selectedSku.s2 ? skuValue.selectedSku.s2 : ''},${
           skuValue.selectedSku.s3 ? skuValue.selectedSku.s3 : ''
         }`
-        console.log(this.$refs.sku)
       } else {
         this.goodsize = '请选择规格'
       }
@@ -375,6 +405,7 @@ export default {
   position: absolute;
   top: 2.2rem;
   bottom: 2.5rem;
+  /* overflow-y: auto; */
   /* overflow-y: scroll; */
 }
 .nav-comp {

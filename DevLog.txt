@@ -133,7 +133,8 @@ Object.keys(Obj)[0] 可获得对象中key对应String名称数组 随后可以�
 通过在deactivated,记录所在页面的scrollY轴坐标，
 再次返回activated时候给予这个坐标通过js原生方法进行定位 达到保存窗口位置的需求
 
-第九课 详情页的开发
+Detail开始********************
+第九课 详情页的开发 
 首先第一步创建个一个详情页的组件进行单页面操作，并且在router中配置路由 例如页面A=>B
 由于请求不同的窗口，所以这里使用了动态路由技术 
 三种方式：
@@ -326,6 +327,30 @@ function debounce(func, wait) {(需要优化重复执行的函数,合并执行�
           this.$refs.tab.currentIndex = i
         }
       }
+
+
+    Detail详情页完**********************
+
+  Cart篇*********************
+  整体框架结构依托于自行处理
+  回到 Detail.vue处理购物车加入的数据生成，利用VUEX 进行跨页面储存
+  具体实施请看加入购物车按钮的函数体现
+  vuex的知识可以查看之前vuex的教学定义
+  vuex的目录结构
+  state——>state.js
+  mutations——>mutations.js
+  actions——>actions.js
+  函数名替换
+  上述对应_type进行替换
+
+  router-link位置重置
+  关于购物车router出去的一个异常，就是点后屏幕的滚动位置会保留，这里我们在router文件夹
+  下建立个scrollRule规则js俩控制需要重置位置的页面路径
+
+  
+
+
+
     
     
 

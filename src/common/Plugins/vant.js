@@ -50,6 +50,45 @@ import { Sku } from 'vant'
 Vue.use(Sku)
 
 //加载中的显示
-import { Loading } from 'vant';
+import { Loading } from 'vant'
 
-Vue.use(Loading);
+Vue.use(Loading)
+
+//复选框
+import { Checkbox, CheckboxGroup } from 'vant'
+
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+
+//icon
+import { Icon } from 'vant'
+
+Vue.use(Icon)
+
+//Toast提示
+import { Toast } from 'vant'
+
+Vue.use(Toast)
+
+//card宫格 购物车功能
+import { Card } from 'vant'
+
+Vue.use(Card)
+
+//SwipeCell 滑动单元格
+import { SwipeCell } from 'vant'
+
+Vue.use(SwipeCell)
+    //订单提交组件
+import { SubmitBar } from 'vant'
+
+Vue.use(SubmitBar)
+    //Tag 标记
+import { Tag } from 'vant'
+
+Vue.use(Tag)
+
+//步进器引入
+import { Stepper } from 'vant'
+
+Vue.use(Stepper)

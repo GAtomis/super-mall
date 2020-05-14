@@ -1,14 +1,12 @@
 <template>
   <div>
-      
     <swiper>
-        <van-swipe-item v-for="(item, index) in banner" :key="index">
-            <div class="vsi-box">
-            <a :href="item.link"><img  class="slide-img" :src="item.image" /></a>
-            </div>
-        </van-swipe-item>
+      <van-swipe-item v-for="(item, index) in banner" :key="index">
+        <div class="vsi-box">
+          <a :href="item.link"><img class="slide-img" :src="item.image"/></a>
+        </div>
+      </van-swipe-item>
     </swiper>
-
   </div>
 </template>
 <script>
@@ -34,11 +32,12 @@ export default {
 <style scope>
 /* 轮播样式会迁移走 */
 .slide-img {
+  /* position: absolute; */
   width: 100%;
 }
 /* 轮播样式会迁移走 */
+/* 防止抖动模式 */
 .vsi-box {
-  /* 防止抖动模式 */
   width: 100%;
   overflow: hidden;
   height: 0;

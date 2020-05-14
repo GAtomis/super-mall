@@ -1,116 +1,192 @@
 <template>
-  <div>
-    <div class="left">
-      <div
-        class="options"
-        :class="[currents == 1 ? 'active' : '']"
-        @click="toScroll(1)"
-      >
-        系统
-      </div>
-      <div
-        class="options"
-        :class="[currents == 2 ? 'active' : '']"
-        @click="toScroll(2)"
-      >
-        规格
-      </div>
-      <div
-        class="options"
-        :class="[currents == 3 ? 'active' : '']"
-        @click="toScroll(3)"
-      >
-        网络
-      </div>
-      <div
-        class="options"
-        :class="[currents == 4 ? 'active' : '']"
-        @click="toScroll(4)"
-      >
-        打印机
-      </div>
-      <div
-        class="options"
-        :class="[currents == 5 ? 'active' : '']"
-        @click="toScroll(5)"
-      >
-        消息与隐私
-      </div>
-      <div
-        class="options"
-        :class="[currents == 6 ? 'active' : '']"
-        @click="toScroll(6)"
-      ></div>
-      <div>
-        <div class="title">系统</div>
-        <div class="title">常规</div>
-        <div class="title">网络</div>
-        <div class="title">打印机</div>
-        <div class="title">消息与隐私</div>
-      </div>
-    </div>
+  <div id="cart">
+    <!-- 导航栏 隐藏可见-->
+    <cart-nav-bar
+      v-show="showAbs"
+      :style="opacityStyle"
+      class="nav-comp"
+    ></cart-nav-bar>
+
+    <!-- 可滚动区域 -->
+
+    <cart-views class="cart-view" @change="change" />
+    <!-- 结算栏 -->
+    <van-submit-bar
+      :price="toggle"
+      button-text="提交订单"
+      @submit="onSubmit"
+      class="submit-bar"
+    >
+      <van-checkbox v-model="allChecked">全选</van-checkbox>
+    </van-submit-bar>
+    <!-- 结算栏 -->
+    <van-submit-bar
+      :price="toggle"
+      button-text="提交订单"
+      @submit="onSubmit"
+      class="submit-bar"
+    >
+      <van-checkbox @click="checkClick" v-model="allChecked">全选</van-checkbox>
+    </van-submit-bar>
   </div>
 </template>
+
 <script>
+// 引入Vuex
+import { mapGetters } from 'vuex'
+import {
+  CART_LENGTH,
+  CART_LIST,
+  IS_ALL_SELECT,
+  ALL_SELECT_GOODS
+} from 'store/mutations_type.js'
+
+//子组件引入
+import CartNavBar from './childComps/CartNavBar'
+import CartViews from './childComps/CartViews'
+// import CartTitleBar from './childComps/CartTitleBar'
 export default {
-  name: 'About',
-  methods: {
-    btnClick() {
-      console.log('检测中')
-    },
-    data() {
-      return {
-        currents: null
-      }
-    },
-    toScroll(index) {
-      this.currents = index
-      // 用 class="scroll_title" 添加锚点
-      let jump = document.querySelectorAll('.scroll_title')
-      let scroll_content = document.querySelector('.scroll_content')
-      let total = jump[index - 1].offsetTop - 223 //这里的223是我头部header的高度
-      let distance = scroll_content.scrollTop //获取需要滚动的距离
-      // 平滑滚动，时长500ms，每10ms一跳，共50跳
-      let step = total / 50
-      if (total > distance) {
-        smoothDown()
+  data() {
+    return {
+      opacityStyle: {
+        opacity: 0
+      },
+      showAbs: true,
+      allChecked: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      length: CART_LENGTH,
+      cartList: CART_LIST,
+      isAll: IS_ALL_SELECT
+    }),
+
+    toggle() {
+      if (this.length) {
+        return Number(
+          this.cartList
+            .filter(item => {
+              return item.checked
+            })
+            .reduce((total, item) => {
+              return (
+                total + item.selectedSkuComb.price.toFixed(2) * item.selectedNum
+              )
+            }, 0)
+        )
       } else {
-        let newTotal = distance - total
-        step = newTotal / 50
-        smoothUp()
+        return 0
       }
-      function smoothDown() {
-        if (distance < total) {
-          distance += step
-          scroll_content.scrollTop = distance
-          setTimeout(smoothDown, 10)
-        } else {
-          scroll_content.scrollTop = total
-        }
+    }
+  },
+  components: {
+    CartNavBar,
+    CartViews
+    // CartTitleBar
+  },
+
+  created() {
+    // 监控滑动
+    window.addEventListener('scroll', this.handleScroll)
+
+    this.$nextTick(this.change)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      const top =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop
+      //
+      if (top > 0) {
+        let opacity = top / 44
+        opacity = opacity > 1 ? 1 : opacity
+        this.opacityStyle = { opacity }
+        this.showAbs = true
+        console.log(opacity)
+      } else if (top == 0) {
+        this.showAbs = false
       }
-      function smoothUp() {
-        if (distance > total) {
-          distance -= step
-          scroll_content.scrollTop = distance
-          setTimeout(smoothUp, 10)
-        } else {
-          scroll_content.scrollTop = total
-        }
-      }
+    },
+    checkClick() {
+      this.$store.commit(ALL_SELECT_GOODS, !this.allChecked)
+    },
+    onSubmit() {},
+    change() {
+      // console.log(this.isAll)
+
+      this.allChecked = this.length === 0 ? false : this.isAll
+    }
+  },
+  watch: {
+    length() {
+      console.log('长度监听')
+
+      this.change()
     }
   }
 }
 </script>
-<style scoped>
-.left {
-  position: fixed;
-  top: 80px;
+
+<style lang="less" scoped>
+#cart {
+  height: 100vh;
+  position: relative;
+  .submit-bar {
+    position: fixed;
+    bottom: 2.4rem;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: #fff;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .nav-comp {
+    background-color: #ffffff;
+    // color: #000;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    // right: 0;
+    top: 0;
+    z-index: 9;
+  }
+  /*   .cart-view {
+    position: absolute;
+    top: 0;
+    bottom: 4.9rem;
+    width: 100%;
+    overflow-y: auto;
+
+    .cart-wrapper {
+      margin: 0.6rem 0.6rem 0 0.6rem;
+      .cart-tabs {
+        .goods-box {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    .nav-comp {
+      background-color: #ffffff;
+      // color: #000;
+      width: 100%;
+      position: fixed;
+      left: 0;
+      // right: 0;
+      top: 0;
+      z-index: 9;
+    }
+  } */
 }
-.options {
-  border: 1px solid;
-}
-.title {
-  width: 100%;
-  height: 200px;
+
+.delete-button {
+  height: 100%;
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
   <div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <div class="slide">
-        <slot>
-          <van-swipe-item>1</van-swipe-item>
-          <van-swipe-item>2</van-swipe-item>
-          <van-swipe-item>3</van-swipe-item>
-          <van-swipe-item>4</van-swipe-item>
-        </slot>
-      </div>
+      <!-- <div class="slide"> -->
+      <slot>
+        <van-swipe-item>1</van-swipe-item>
+        <van-swipe-item>2</van-swipe-item>
+        <van-swipe-item>3</van-swipe-item>
+        <van-swipe-item>4</van-swipe-item>
+      </slot>
+      <!-- </div> -->
     </van-swipe>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
   font-size: 1rem;
   /* line-height: 150px; */
   text-align: center;
-  /* background-color: #39a9ed; */
+  background-color: #39a9ed;
 }
 .slide {
   width: 100%;

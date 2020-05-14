@@ -8,7 +8,8 @@ module.exports = {
                 components: '@/components',
                 views: '@/views',
                 '@img': '@/assets/img',
-                static: '@/static'
+                static: '@/static',
+                store: '@/store'
             }
         }
     },
