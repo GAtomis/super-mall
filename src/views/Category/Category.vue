@@ -1,61 +1,24 @@
 <template>
-  <div class="Category">
-    <div class="cart-view">
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-      <div><h1>我是图标的</h1></div>
-    </div>
-  </div>
+  <div class="Category"></div>
 </template>
 <script>
+// import scroll from 'components/common/Scroll/Scroll'
 export default {
-  name: 'Category'
+  name: 'Category',
+
+  data() {
+    return {
+      // visible: <false></false>
+    }
+  },
+  components: {
+    // scroll
+  },
+  methods: {
+    change() {
+      // this.visible = 1
+    }
+  }
 }
 </script>
 <style scoped>
@@ -66,9 +29,17 @@ export default {
 .cart-view {
   position: absolute;
 
-  top: 1px;
+  top: 0;
   bottom: 10rem;
   width: 100%;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+}
+.bg1 {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.bg2 {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 </style>

@@ -347,6 +347,20 @@ function debounce(func, wait) {(需要优化重复执行的函数,合并执行�
   关于购物车router出去的一个异常，就是点后屏幕的滚动位置会保留，这里我们在router文件夹
   下建立个scrollRule规则js俩控制需要重置位置的页面路径
 
+  cart页面节后
+  HTML
+  从上至下：
+  nav-bar——>封装组件样式使用了可隐藏下拉可见的函数
+  van-button（确认删除）——>通过点击titleBar和navBar的管理产生的函数
+  van-list——>商品的购物车内的展示功能,里面包括空的占位符
+  van-submit-bar——>结算栏
+  js
+  可以看cart里面的方法所有介绍，有很多都是vant插件API
+  vuex相关知识，可以查看官方文档或者查看对应方法理解
+  css
+  主要使用的技术还是弹性布局和定位来实现
+  
+
   
 
 

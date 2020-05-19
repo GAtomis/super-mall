@@ -92,3 +92,8 @@ Vue.use(Tag)
 import { Stepper } from 'vant'
 
 Vue.use(Stepper)
+
+//空占位符
+
+import { Empty } from 'vant'
+Vue.use(Empty)

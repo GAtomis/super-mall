@@ -1,15 +1,40 @@
 <template>
   <div class="title-bar">
     <div class="title-opts   hasNativeBar">
-      <h2 class="title"><!-- empty -->购物车</h2>
-      <div class="opts"><span class="opt manage">管理</span></div>
+      <h2 class="title"><!-- empty -->购物车({{ length ? length : 0 }})</h2>
+      <div class="opts" @click="controlClick">
+        <span v-if="isShow" class="opt manage">管理</span>
+
+        <span v-if="!isShow" class="opt manage">完成</span>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+import { CART_LENGTH } from 'store/mutations_type.js'
 export default {
+  props: {
+    controlSwitch: Boolean
+  },
+  data() {
+    return {}
+  },
   name: 'CartTitleBar',
-  components: {}
+  components: {},
+  computed: {
+    ...mapGetters({ length: CART_LENGTH }),
+    isShow() {
+      return !this.controlSwitch
+    }
+  },
+  methods: {
+    controlClick() {
+      console.log('dasdas')
+
+      this.$bus.$emit('controlClick', this.isShow)
+    }
+  }
 }
 </script>
 <style lang="less" scoped>

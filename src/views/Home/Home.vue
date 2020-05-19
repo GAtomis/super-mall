@@ -244,7 +244,9 @@ export default {
 }
 /* 标题栏样式 */
 .home-nav {
-  background-color: var(--color-tint);
+  /* background-color: var(--color-tint); */
+  background-color: var(--bgcolor);
+  box-shadow: 0px 1px 1px #888888;
   color: #fff;
   position: fixed;
   left: 0;

@@ -1,9 +1,12 @@
 <template>
-  <div class="cart-views">
+  <div
+    class="cart-views"
+    :style="{ 'padding-bottom': !this.length ? 0 : '5rem' }"
+  >
     <!-- 初始导航栏 -->
 
-    <cart-title-bar></cart-title-bar>
-    <div class="cart-wrapper">
+    <cart-title-bar :controlSwitch="controlSwitch" />
+    <div class="cart-box">
       <div class="cart-tab">
         <div class="goods-box" v-for="(item, index) of cartList" :key="index">
           <van-swipe-cell>
@@ -16,7 +19,7 @@
               "
               :desc="'剩余库存:' + item.selectedSkuComb.stock_num + '件'"
               :title="item.title"
-              class="goods-card"
+              class="goods-card van-ellipsis"
               thumb="https://s5.mogucdn.com/mlcdn/c45406/170404_6d94c1i457lg7e58djfgc08d19k31_640x960.jpg"
             >
               <template #tags>
@@ -71,6 +74,9 @@ import {
 } from 'store/mutations_type.js'
 import CartTitleBar from './CartTitleBar'
 export default {
+  props: {
+    controlSwitch: Boolean
+  },
   name: 'CartViews',
   data() {
     return {}
@@ -80,62 +86,44 @@ export default {
       length: CART_LENGTH,
       cartList: CART_LIST,
       deleteCart: DELETE_CART
-    }),
-    toggle() {
-      /* this.length ? this.cartList[0 ].selectedSkuComb.price : 0 */
-      if (this.length) {
-        return Number(
-          this.cartList
-            .filter(item => {
-              return item.checked
-            })
-            .reduce((total, item) => {
-              return (
-                total + item.selectedSkuComb.price.toFixed(2) * item.selectedNum
-              )
-            }, 0)
-        )
-      } else {
-        return 0
-      }
-    }
+    })
   },
   components: {
     CartTitleBar
   },
   methods: {
+    //点击单个选择按钮触发事件
     cbtnClick(item) {
-      // console.log(item)
-      // item.checked = !item.checked
       this.$store.commit(SINGLE_SELECT_GOODS, item)
-      // console.log(item.checked)
     },
+    //按钮改变触发事件
     singleClickChange() {
       this.$emit('change')
     },
+    //单个删除事件
     deleteClick(item) {
-      this.$store.dispatch(DELETE_CART, item)
+      item.switch = false
+      setTimeout(() => {
+        this.$store.dispatch(DELETE_CART, item)
+      }, 500)
     }
   }
 }
 </script>
 <style lang="less" scoped>
-.cart-view {
-  position: absolute;
-  top: 0;
-  bottom: 4.9rem;
-  width: 100%;
-  // overflow-y: auto;
-
-  .cart-wrapper {
-    margin: 0.6rem 0.6rem 0 0.6rem;
+.cart-views {
+  // padding-bottom: 4.9rem;
+  .cart-box {
     .cart-tabs {
+      // margin-bottom: 4.9rem;
+      margin: 0.6rem 0.6rem 4.9rem 0.6rem;
       .goods-box {
         margin-bottom: 1rem;
       }
     }
   }
 }
+
 .delete-button {
   height: 100%;
 }

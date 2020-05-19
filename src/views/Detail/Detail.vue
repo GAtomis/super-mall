@@ -27,13 +27,10 @@
       @sku-selected="selClick"
       ref="sku"
     />
+
     <!-- 拉动条 -->
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      class="van-list"
-    >
+
+    <van-list finished-text="没有更多了" class="van-list">
       <!-- 详情页轮播图 -->
       <detail-swiper :detailSwiper="detailSwiper.image" />
       <!-- 详情页的基本信息 -->
@@ -63,7 +60,7 @@
 <script>
 //工具类方法导入 虚拟数据，模拟滑动锚点，防抖
 import { getVirtualData, scrollMoving, debounce } from 'common/utils/utils'
-import { Toast } from 'vant'
+// import { Toast } from 'vant'
 import { ADD_CART, CART_LIST, CART_LENGTH } from 'store/mutations_type.js'
 //网络请求导入函数
 import { getDetail, getRecommend, Goods, shopInfo } from 'network/Detail'
@@ -225,9 +222,11 @@ export default {
   },
   created() {
     /* 注意如果真实使用该项目需要全部重写network的接受方法以及删除假数据方法，这里的写法不够优雅需要后续抽出到一个组件中进行 */
-
+    this.goodsId = this.$route.params.id
     //假数据判断，真接口时重写方法
     const id = getVirtualData(this.goodsId)
+    console.log(id)
+
     this.getDetail(id)
     /*  假接口判断结束,推荐数据接收 */
     this.getRecommend('news', 2)
@@ -257,9 +256,9 @@ export default {
     window.addEventListener('scroll', this.handleScroll)
   },
   mounted() {
-    this.$nextTick(() => {
-      this.goodsId = this.$route.params.id
-    })
+    // this.$nextTick(() => {
+    //   this.goodsId = this.$route.params.id
+    // })
   },
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll)
@@ -356,13 +355,18 @@ export default {
       goodsData.title = this.goodsInfo.title
 
       let newsData = goodsData
-      this.$store.dispatch(ADD_CART, newsData)
+      this.$store.dispatch(ADD_CART, newsData).then(res => {
+        this.$toast({
+          message: res,
+          icon: 'cart-o'
+        })
+      })
       console.log(this.$store.state.cartList)
 
-      Toast({
-        message: '加入成功',
-        icon: 'cart-o'
-      })
+      // Toast({
+      //   message: '加入成功',
+      //   icon: 'cart-o'
+      // })
       console.log(newsData)
 
       console.log(this.$store.state)
@@ -405,9 +409,11 @@ export default {
   position: absolute;
   top: 2.2rem;
   bottom: 2.5rem;
+
   /* overflow-y: auto; */
   /* overflow-y: scroll; */
 }
+
 .nav-comp {
   background-color: #ffffff;
   color: #000;

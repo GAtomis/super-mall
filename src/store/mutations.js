@@ -4,7 +4,8 @@ import {
     ADD_TO_CART,
     SINGLE_SELECT_GOODS,
     ALL_SELECT_GOODS,
-    DELETE_ITEM
+    DELETE_CART,
+    SELECT_CLEAN
 } from './mutations_type'
 export default {
     [ADD_COUNTER](state, obj) {
@@ -30,14 +31,30 @@ export default {
             item.checked = payload
         })
     },
-    [DELETE_ITEM](state, payload) {
-        state.cartList.forEach((item, index, array) => {
+    [DELETE_CART](state, payload) {
+        const cartList = state.cartList;
+        const length = state.cartList.length
+
+        for (let i = length - 1; i >= 0; i--) {
             if (
-                item.goodsId === payload.goodsId &&
-                item.selectedSkuComb.id === payload.selectedSkuComb.id
+                cartList[i].goodsId === payload.goodsId &&
+                cartList[i].selectedSkuComb.id === payload.selectedSkuComb.id
             ) {
-                array.splice(index, 1)
+                cartList.splice(i, 1)
             }
-        })
+        }
+    },
+    [SELECT_CLEAN](state) {
+
+        const cartList = state.cartList;
+        const length = state.cartList.length
+
+        for (let i = length - 1; i >= 0; i--) {
+            if (
+                cartList[i].checked === true
+            ) {
+                cartList.splice(i, 1)
+            }
+        }
     }
 }

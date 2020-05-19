@@ -5,7 +5,11 @@
         <div>购物车</div>
       </template>
       <template v-slot:right>
-        <div>管理</div>
+        <div @click="controlClick">
+          <span v-if="isShow">管理</span>
+
+          <span v-if="!isShow">完成</span>
+        </div>
       </template>
     </nav-bar>
   </div>
@@ -13,9 +17,25 @@
 <script>
 import navBar from 'components/common/navbar/navBar'
 export default {
+  props: {
+    controlSwitch: Boolean
+  },
+  computed: {
+    isShow() {
+      return !this.controlSwitch
+    }
+  },
   name: 'CartNavBar',
+  data() {
+    return {}
+  },
   components: {
     navBar
+  },
+  methods: {
+    controlClick() {
+      this.$bus.$emit('controlClick', this.isShow)
+    }
   }
 }
 </script>
