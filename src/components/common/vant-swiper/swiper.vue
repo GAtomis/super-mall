@@ -1,6 +1,11 @@
 <template>
   <div>
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+    <van-swipe
+      class="my-swipe"
+      :autoplay="3000"
+      indicator-color="white"
+      :stop-propagation="false"
+    >
       <!-- <div class="slide"> -->
       <slot>
         <van-swipe-item>1</van-swipe-item>
