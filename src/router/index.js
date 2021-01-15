@@ -38,6 +38,7 @@ Vue.use(VueRouter)
 const routes = [{
         path: '/',
         name: 'Layout',
+        redirect: '/home',
         component: () =>
             import ('views/Layout'),
 

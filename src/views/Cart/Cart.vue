@@ -32,6 +32,7 @@
           round
           color="linear-gradient(to right,#ff6034,#ee0a24)"
           class="bottom-button"
+          @click="handleHome"
         >
           去看看
         </van-button>
@@ -176,6 +177,9 @@ export default {
     //删除方法选中元素方法
     SelectClean() {
       this.$store.dispatch(SELECT_CLEAN)
+    },
+    handleHome() {
+      this.$router.push({ path: 'Home' })
     }
   },
   watch: {

@@ -36,6 +36,8 @@
 // 公共方法和类
 import { getHomeData, getRankList, getGoods } from 'network/Home.js'
 import { debounce } from 'common/utils/utils.js'
+//vant toast
+import { Toast } from 'vant'
 
 // import HomeTabbar from 'components/content/HomeTabbar/HomeTabbar'
 // import scroll from 'components/common/Scroll/Scroll'
@@ -121,6 +123,11 @@ export default {
 
       this.tabs.loading = false
       this.tabs.finished = false
+    })
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      loadingType: 'spinner'
     })
   },
 
@@ -244,8 +251,8 @@ export default {
 }
 /* 标题栏样式 */
 .home-nav {
-  /* background-color: var(--color-tint); */
-  background-color: var(--bgcolor);
+  background-color: var(--color-tint);
+  /* background-color: var(--bgcolor); */
   box-shadow: 0px 1px 1px #888888;
   color: #fff;
   position: fixed;

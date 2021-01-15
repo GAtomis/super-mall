@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+
+<body>
+    <span id="spanName"></span>
+    <input type="text" id="inputName" />
+    <!-- <script>
+        let obj = {
+            name: ''
+        }
+        let newObj = JSON.parse(JSON.stringify(obj))
+        Object.defineProperty(obj, 'name', {
+            get() {
+                return newObj.name
+            },
+            set(val) {
+                if (val === newObj.name) return
+                newObj.name = val
+                observer()
+            }
+        })
+        setTimeout(() => {
+            obj.name = 20
+            observer()
+        }, 1000)
+
+        function observer() {
+            spanName.innerHTML = obj.name
+            inputName.value = obj.name
+        }
+        inputName.oninput = function() {
+            obj.name = this.value
+        }
+    </script> -->
+    <script>
+        let obj = {}
+        obj = new Proxy(obj, {
+            get(target, prop) {
+                console.log('A')
+                return target[prop]
+            },
+            set(target, prop, value) {
+                target[prop] = value
+                observer()
+            }
+        })
+
+        function observer() {
+            spanName.innerHTML = obj.name
+            inputName.value = obj.name
+        }
+        inputName.oninput = function() {
+            obj.name = this.value
+        }
+    </script>
+</body>
+
+</html>
